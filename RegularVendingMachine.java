@@ -26,11 +26,6 @@ public class RegularVendingMachine {
     }
 
     public void displayInventory() {
-        /*System.out.println("This is the starting inventory: ");
-        System.out.println(inventory[0].getStocks());
-        System.out.println("\nThis is the ending inventory: ");
-        System.out.println(inventory[1].getStocks());*/
-
         System.out.println("=== Inventory ===");
         ArrayList<Slot> startingStocks = inventory[0].getStocks();
         ArrayList<Slot> endingStocks = inventory[1].getStocks();
