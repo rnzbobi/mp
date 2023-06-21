@@ -36,7 +36,7 @@ public class VendingMachine {
 
             switch (choice) {
                 case 1:
-                    System.out.println("You chose Option 1: Create a Vending Machine");
+                    System.out.println("You chose Option 1: Create a Vending Machine burat");
                     System.out.println("Enter which type of vending machine to create (Regular or Special): ");
                     type = sc.nextLine();
 
