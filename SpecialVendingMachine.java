@@ -4,7 +4,7 @@ public class SpecialVendingMachine {
     private HashMap<String, Dish> choices;
     private static HashMap<String, Integer> money;
     private HashMap<String, Integer> transactions;
-    private ArrayList<Slot> slots;
+    private HashMap<Ingredient,Integer> slots;
     private Inventory[] inventory;
 
     public boolean insertMoney(int m){
