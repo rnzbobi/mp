@@ -30,10 +30,6 @@ public class RegularVendingMachine {
             int quantity = items.getValue();
             price = ingredient.getPrice();
             if(name.equalsIgnoreCase(ingredient.getName()) == true && price <= bank.getUserTotalMoney()){
-                if(price >= bank.getUserTotalMoney()){
-                    System.out.println("You do not have enough balance!");
-                    return found;
-                }
                 System.out.println("You have selected the item [" + ingredient.getName() + "]\n");
                 System.out.println("The calories of this item is: " + ingredient.getCalories() + "\n");
                 quantity--;
@@ -43,6 +39,10 @@ public class RegularVendingMachine {
                 found = true;
                 return true;
             }
+            else if(name.equalsIgnoreCase(ingredient.getName()) == true && price > bank.getUserTotalMoney()){
+                    System.out.println("You do not have enough balance!");
+                    return found;
+                }
         }
         if(found == false) {
             System.out.println("[ERROR] The item you have selected is invalid!");
