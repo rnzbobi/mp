@@ -150,7 +150,7 @@ public void insertMoney() {
             {
                 System.out.println("\n");
             }
-            System.out.print("[" + quantity + "]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice));
+            System.out.print("[" + quantity + "]" + itemName + " | Price: Php" + decimalFormat.format(itemPrice));
             }
         }
 
