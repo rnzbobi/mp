@@ -139,20 +139,36 @@ public void insertMoney() {
 
     public void displayAvailableItem() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        int i = 0;
+        int i = 1;
+        int maxItemNameLength = 0;
+    
+        for (Ingredient item : slots.keySet()) {
+            int itemNameLength = item.getName().length();
+            if (itemNameLength > maxItemNameLength) {
+            maxItemNameLength = itemNameLength;
+            }
+        }
+    
+        int itemInfoWidth = maxItemNameLength + 25;
+    
         for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
             Ingredient item = entry.getKey();
             int quantity = entry.getValue();
             String itemName = item.getName();
             int itemPrice = item.getPrice();
             i++;
-            if(i % 3 == 0)
-            {
+        
+            if (i % 2 == 0) {
                 System.out.println("\n");
             }
-            System.out.print("[" + quantity + "]" + itemName + " | Price: Php" + decimalFormat.format(itemPrice));
-            }
+        
+            String itemInfo = "[" + quantity + "]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice);
+            String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
+            System.out.print(formattedItemInfo);
         }
+
+        System.out.println("\n\n");
+    }
 
     public void maintenance() {
 
