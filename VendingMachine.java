@@ -82,25 +82,49 @@ public class VendingMachine {
             System.out.println("\nPlease insert money: ");
             RegularVendingMachine.insertMoney();
             System.out.println("Your current balance is :[" + bank.getUserTotalMoney() + "]");
-            RegularVendingMachine.displayAvailableItem();
-            System.out.println("[A] Continue to Select Item");
-            System.out.println("[B] Produce Change");
-            System.out.print("Select an option: ");
-            userchoice2 = sc.nextLine();
-            if (userchoice2.equalsIgnoreCase("A")) {
-                boolean itemSelected = false;
-                while (!itemSelected) {
-                    System.out.print("\nPlease select an item from the choices above: ");
-                    itemname = sc.nextLine();
-                    itemSelected = RegularVendingMachine.selectItem(itemname);
+            if(bank.getUserTotalMoney() <= 0){
+                System.out.println("You do not have enough balance!");
+                System.out.print("Would you like to insert money? (Y/N): ");
+                userchoice = sc.nextLine();
+                if(userchoice.equalsIgnoreCase("Y")){
+                    RegularVendingMachine.insertMoney();
+                }
+                else{
+                    System.out.println("Exiting Vending Machine");
+                    return;
                 }
             }
             else{
-                //produce change method or refund???
+                RegularVendingMachine.displayAvailableItem();
+                System.out.println("\n[A] Continue to Select Item");
+                System.out.println("[B] Return Money");
+                System.out.print("Select an option: ");
+                userchoice2 = sc.nextLine();
+                if (userchoice2.equalsIgnoreCase("A")) {
+                    boolean itemSelected = false;
+                    while (!itemSelected) {
+                        System.out.print("\nPlease select an item from the choices above: ");
+                        itemname = sc.nextLine();
+                        itemSelected = RegularVendingMachine.selectItem(itemname);
+                        
+                    }
+                }
+                else{
+                    bank.updateUserMoney(1000, 0);
+                    bank.updateUserMoney(500, 0);
+                    bank.updateUserMoney(200, 0);
+                    bank.updateUserMoney(100, 0);
+                    bank.updateUserMoney(50, 0);
+                    bank.updateUserMoney(10, 0);
+                    bank.updateUserMoney(5, 0);
+                    bank.updateUserMoney(1, 0);
+                    bank.updateUserTotalMoney(0);
+                }
             }
         }
+            
         else{
-            //exit??
+            return;
         }
     }
 

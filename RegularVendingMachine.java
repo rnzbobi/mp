@@ -23,20 +23,27 @@ public class RegularVendingMachine {
 
     public boolean selectItem(String name) {
         boolean found = false;
+        int price, total = 0;
         HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
         for(Map.Entry<Ingredient, Integer> items : availableitems.entrySet()){
             Ingredient ingredient = items.getKey();
             int quantity = items.getValue();
-            if(name.equalsIgnoreCase(ingredient.getName()) == true){
+            price = ingredient.getPrice();
+            if(name.equalsIgnoreCase(ingredient.getName()) == true && price <= bank.getUserTotalMoney()){
+                if(price >= bank.getUserTotalMoney()){
+                    System.out.println("You do not have enough balance!");
+                    return found;
+                }
                 System.out.println("You have selected the item [" + ingredient.getName() + "]\n");
                 System.out.println("The calories of this item is: " + ingredient.getCalories() + "\n");
                 quantity--;
                 slots.put(ingredient,quantity);
+                total = bank.getUserTotalMoney() - price;
+                bank.updateUserTotalMoney(total);
                 found = true;
                 return true;
             }
         }
-
         if(found == false) {
             System.out.println("[ERROR] The item you have selected is invalid!");
             return false;
@@ -54,15 +61,9 @@ public void insertMoney() {
         i = 0;
         i2 = 0;
         System.out.println("[Choose a number that corresponds to your Bills/Coins] [Balance: " + bank.getUserTotalMoney() + "]");
-        System.out.println("|1| 1000 Pesos");
-        System.out.println("|2| 500 Pesos");
-        System.out.println("|3| 200 Pesos");
-        System.out.println("|4| 100 Pesos");
-        System.out.println("|5| 50 Pesos");
-        System.out.println("|6| 20 Pesos");
-        System.out.println("|7| 10 Pesos");
-        System.out.println("|8| 5 Pesos");
-        System.out.println("|9| 1 Pesos");
+        System.out.println("|1| 1000 Pesos |2| 500 Pesos |3| 200 Pesos");
+        System.out.println("|4| 100 Pesos  |5| 50 Pesos  |6| 20 Pesos");
+        System.out.println("|7| 10 Pesos   |8| 5 Pesos   |9| 1 Pesos");
         System.out.println("|10| EXIT");
         System.out.print("[Enter] ");
         i = Integer.parseInt(sc.nextLine());
@@ -136,17 +137,29 @@ public void insertMoney() {
             }
     }
 
-    public void displayAvailableItem() {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        int i = 0;
-        for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
-            Ingredient item = entry.getKey();
-            int quantity = entry.getValue();
-            String itemName = item.getName();
-            int itemPrice = item.getPrice();
-            System.out.println("[" + quantity + "] x " + itemName + " | Price: Php " + decimalFormat.format(itemPrice));
-            }
+public void displayAvailableItem() {
+    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+    int i = 0;
+    StringBuilder stringBuilder = new StringBuilder();
+
+    for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
+        Ingredient item = entry.getKey();
+        int quantity = entry.getValue();
+        String itemName = item.getName();
+        int itemPrice = item.getPrice();
+        i++;
+        stringBuilder.append("[").append(itemName).append("] ")
+                .append(itemName).append(" [Php BURAT ").append(decimalFormat.format(itemPrice)).append("]");
+
+        if (i % 2 == 0) {
+            stringBuilder.append(" | ");
+        } else {
+            stringBuilder.append("\n");
         }
+    }
+
+    System.out.print(stringBuilder.toString());
+}
 
     public void maintenance() {
 
