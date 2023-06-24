@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Driver {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         HashMap<Ingredient, Integer> slots = new HashMap<>();
         int number = 0;
         String name, type;
@@ -36,12 +36,12 @@ public class Driver {
                     Ingredient Cinnamon = new Ingredient("Cinnamon", 189, 19);
                     Ingredient Espresso = new Ingredient("Espresso", 349, 3);
 
-                    System.out.println("Enter the name of the vending machine: ");
+                    System.out.println("Enter the name of your Coffee Vending Machine: ");
                     name = sc.next();
                     sc.nextLine(); // Consume the newline character
 
                     do {
-                        System.out.println("Enter the type of vending machine: ");
+                        System.out.println("Type of Coffee Vending Machine [Regular] | [Special]: ");
                         type = sc.next();
                         sc.nextLine(); // Consume the newline character
                     } while (!(type.equalsIgnoreCase("Regular")) && !(type.equalsIgnoreCase("Special")));
@@ -73,18 +73,25 @@ public class Driver {
                     System.out.println("You chose Option 2: Test Vending Machine");
                     if (vendingMachineCreated) {
                         vendingmachine.testVendingMachine();
+                        System.out.println("\n");
                     } else {
-                        System.out.println("[ERROR] You don't have a vending machine to test!");
+                        System.out.println("\n[ERROR] You don't have a vending machine to test!");
                     }
                     break;
 
                 case 3:
-                    System.out.println("Exiting Program....");
+                    System.out.print("\nExiting Program");
+                    Thread.sleep(1000);
+                    System.out.print(". ");
+                    Thread.sleep(1000);
+                    System.out.print(". ");
+                    Thread.sleep(1000);
+                    System.out.print(". \n");
                     System.exit(0);
                     break;
 
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("\nInvalid choice. Please try again.");
             }
         } while (choice != 3);
         sc.close();
