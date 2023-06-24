@@ -149,7 +149,7 @@ public void displayAvailableItem() {
         int itemPrice = item.getPrice();
         i++;
         stringBuilder.append("[").append(itemName).append("] ")
-                .append(itemName).append(" [Php BURAT ").append(decimalFormat.format(itemPrice)).append("]");
+                .append(itemName).append(" [Php").append(decimalFormat.format(itemPrice)).append("]");
 
         if (i % 2 == 0) {
             stringBuilder.append(" | ");
