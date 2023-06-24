@@ -137,29 +137,22 @@ public void insertMoney() {
             }
     }
 
-public void displayAvailableItem() {
-    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-    int i = 0;
-    StringBuilder stringBuilder = new StringBuilder();
-
-    for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
-        Ingredient item = entry.getKey();
-        int quantity = entry.getValue();
-        String itemName = item.getName();
-        int itemPrice = item.getPrice();
-        i++;
-        stringBuilder.append("[").append(itemName).append("] ")
-                .append(itemName).append(" [Php").append(decimalFormat.format(itemPrice)).append("]");
-
-        if (i % 2 == 0) {
-            stringBuilder.append(" | ");
-        } else {
-            stringBuilder.append("\n");
+    public void displayAvailableItem() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        int i = 0;
+        for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
+            Ingredient item = entry.getKey();
+            int quantity = entry.getValue();
+            String itemName = item.getName();
+            int itemPrice = item.getPrice();
+            i++;
+            if(i % 3 == 0)
+            {
+                System.out.println("\n");
+            }
+            System.out.print("[" + quantity + "]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice));
+            }
         }
-    }
-
-    System.out.print(stringBuilder.toString());
-}
 
     public void maintenance() {
 
