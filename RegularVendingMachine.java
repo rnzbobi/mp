@@ -162,7 +162,7 @@ public void insertMoney() {
                 System.out.println("\n");
             }
         
-            String itemInfo = "[" + quantity + "]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice);
+            String itemInfo = "[" + quantity + "]" + itemName + " | Price: Phpburat " + decimalFormat.format(itemPrice);
             String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
             System.out.print(formattedItemInfo);
         }
