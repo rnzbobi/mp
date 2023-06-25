@@ -8,6 +8,7 @@ public class RegularVendingMachine {
     private Bank bank;
     private HashMap<String, Integer> transactions;
     private Inventory[] inventory;
+    private ArrayList<Log> Sales;
     Scanner sc = new Scanner(System.in);
 
     public RegularVendingMachine(String name, HashMap<Ingredient,Integer> slots2, Bank bank){
@@ -19,6 +20,7 @@ public class RegularVendingMachine {
         inventory[1] = new Inventory();
         inventory[0].setStocks(slots2);
         inventory[1].setStocks(slots2);
+        this.Sales = new ArrayList<>();
     }
 
     public boolean selectItem(String name) {
@@ -29,7 +31,7 @@ public class RegularVendingMachine {
             Ingredient ingredient = items.getKey();
             int quantity = items.getValue();
             price = ingredient.getPrice();
-            if(name.equalsIgnoreCase(ingredient.getName()) == true && price <= bank.getUserTotalMoney()){
+            if(name.equalsIgnoreCase(ingredient.getName()) && price <= bank.getUserTotalMoney() && quantity > 0){
                 System.out.println("You have selected the item [" + ingredient.getName() + "]\n");
                 System.out.println("The calories of this item is: " + ingredient.getCalories() + "\n");
                 quantity--;
@@ -37,14 +39,23 @@ public class RegularVendingMachine {
                 total = bank.getUserTotalMoney() - price;
                 bank.updateUserTotalMoney(total);
                 found = true;
+                Log sale = new Log(ingredient.getName(),price,1);
+                Sales.add(sale);
+                System.out.println("------------------------------");
+                System.out.println("         RECEIPT");
+                System.out.println("------------------------------");
+                System.out.println("Item: " + ingredient.getName());
+                System.out.println("Price: Php " + price);
+                System.out.println("------------------------------");
+                System.out.println("Thank you for your purchase!");
                 return true;
             }
-            else if(name.equalsIgnoreCase(ingredient.getName()) == true && price > bank.getUserTotalMoney()){
-                    System.out.println("You do not have enough balance!");
+            else if(name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney() && quantity <= 0){
+                    System.out.println("[Error Processing]");
                     return found;
                 }
         }
-        if(found == false) {
+        if(!found) {
             System.out.println("[ERROR] The item you have selected is invalid!");
             return false;
         }
@@ -75,43 +86,52 @@ public void insertMoney() {
         System.out.print("How many: ");
         i2 = Integer.parseInt(sc.nextLine());
 
-        switch(i){
-            case 1: bank.updateUserMoney(1000, i2);
-                    usertotal += 1000 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 2: bank.updateUserMoney(500, i2);
-                    usertotal += 500 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 3: bank.updateUserMoney(200, i2);
-                    usertotal += 200 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 4: bank.updateUserMoney(100, i2);
-                    usertotal += 100 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 5: bank.updateUserMoney(50, i2);
-                    usertotal += 50 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 6: bank.updateUserMoney(20, i2);
-                    usertotal += 20 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 7: bank.updateUserMoney(10, i2);
-                    usertotal += 10 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 8: bank.updateUserMoney(5, i2);
-                    usertotal += 5 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
-            case 9: bank.updateUserMoney(1, i2);
-                    usertotal += 1 * i2;
-                    bank.updateUserTotalMoney(usertotal);
-                    break;
+        switch (i) {
+            case 1 -> {
+                bank.updateUserMoney(1000, i2);
+                usertotal += 1000 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 2 -> {
+                bank.updateUserMoney(500, i2);
+                usertotal += 500 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 3 -> {
+                bank.updateUserMoney(200, i2);
+                usertotal += 200 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 4 -> {
+                bank.updateUserMoney(100, i2);
+                usertotal += 100 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 5 -> {
+                bank.updateUserMoney(50, i2);
+                usertotal += 50 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 6 -> {
+                bank.updateUserMoney(20, i2);
+                usertotal += 20 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 7 -> {
+                bank.updateUserMoney(10, i2);
+                usertotal += 10 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 8 -> {
+                bank.updateUserMoney(5, i2);
+                usertotal += 5 * i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
+            case 9 -> {
+                bank.updateUserMoney(1, i2);
+                usertotal += i2;
+                bank.updateUserTotalMoney(usertotal);
+            }
         }
     } while (i != 10);
     
@@ -161,10 +181,17 @@ public void insertMoney() {
             if (i % 2 == 0) {
                 System.out.println("\n");
             }
-        
-            String itemInfo = "[" + quantity + "]" + itemName + " | Price: Phpburat " + decimalFormat.format(itemPrice);
-            String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
-            System.out.print(formattedItemInfo);
+
+            if(quantity >= 1) {
+                String itemInfo = "[" + quantity + "]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice);
+                String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
+                System.out.print(formattedItemInfo);
+            }
+            else {
+                String itemInfo = "[SOLD OUT]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice);
+                String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
+                System.out.print(formattedItemInfo);
+            }
         }
 
         System.out.println("\n\n");
@@ -174,7 +201,7 @@ public void insertMoney() {
 
     }
 
-    public void printTransaction() {
+    public void printSummaryTransaction(){
 
     }
 

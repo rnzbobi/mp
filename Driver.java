@@ -36,23 +36,20 @@ public class Driver {
                     Ingredient Cinnamon = new Ingredient("Cinnamon", 189, 19);
                     Ingredient Espresso = new Ingredient("Espresso", 349, 3);
 
-                    System.out.println("Enter the name of your Coffee Vending Machine: ");
+                    System.out.print("Enter the name of your Coffee Vending Machine: ");
                     name = sc.next();
                     sc.nextLine(); // Consume the newline character
-
                     do {
-                        System.out.println("Type of Coffee Vending Machine [Regular] | [Special]: ");
+                        System.out.print("Type of Coffee Vending Machine [Regular] | [Special]: ");
                         type = sc.next();
                         sc.nextLine(); // Consume the newline character
                     } while (!(type.equalsIgnoreCase("Regular")) && !(type.equalsIgnoreCase("Special")));
 
-                    System.out.println("How many items do you want for all?:");
-                    while (!sc.hasNextInt()) {
+                    System.out.print("How many items do you want for all?:");
+                    while (!sc.hasNextInt() || (number = sc.nextInt()) < 10) {
                         System.out.println("Invalid input. Please enter a number.");
-                        sc.nextLine(); // Discard the invalid input
                     }
-                    number = sc.nextInt();
-                    sc.nextLine(); // Consume the newline character
+                    sc.nextLine();
 
                     slots.put(EspressoRoast, number);
                     slots.put(Milk, number);
