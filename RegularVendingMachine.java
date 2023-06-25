@@ -201,8 +201,34 @@ public void insertMoney() {
 
     }
 
-    public void printSummaryTransaction(){
+    public void printSummaryTransaction() {
+        System.out.println("===== SUMMARY OF TRANSACTION =====");
+        int total = 0;
+        Map<String, Integer> itemQuantities = new HashMap<>();
+        Map<String, Integer> itemPrices = new HashMap<>();
 
+        for (Log log : Sales) {
+            System.out.println("Name: " + log.getName());
+            System.out.println("Price: " + log.getPrice());
+            System.out.println("==========================");
+            total += log.getPrice();
+
+            String itemName = log.getName();
+            int itemQuantity = log.getQuan();
+            itemQuantities.put(itemName, itemQuantities.getOrDefault(itemName, 0) + itemQuantity);
+            itemPrices.put(itemName, log.getPrice());
+        }
+
+        for (String itemName : itemQuantities.keySet()) {
+            int itemQuantity = itemQuantities.get(itemName);
+            int itemPrice = itemPrices.getOrDefault(itemName, 0);
+            int itemTotalPrice = itemQuantity * itemPrice;
+
+            System.out.println(itemName + " Quantity Sold: " + itemQuantity);
+            System.out.println(itemName + " Total Price: " + itemTotalPrice);
+        }
+
+        System.out.println("Total Price for All Item: " + total);
     }
 
     public String getName(){
