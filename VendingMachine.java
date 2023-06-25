@@ -63,69 +63,87 @@ public class VendingMachine {
     
     public void testVendingMachine() throws InterruptedException {
         String itemname, userchoice, userchoice2;
+        int choice;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Welcome to Coffee Vending Machine [" + RegularVendingMachine.getName() + "]!");
         //Thread.sleep(1500);
-        System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n\n");
+        System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
         //Thread.sleep(1500);
-        System.out.println("CURRENT BALANCE OF THE VENDING MACHINE [" + bank.getTotalMoney() + "]");
-        //hread.sleep(500);
-        System.out.println("CURRENT BALANCE OF THE USER [" + bank.getUserTotalMoney() + "]");
-        //Thread.sleep(500);
-        System.out.println("These are all the available items:\n");
-        RegularVendingMachine.displayAvailableItem();
-        //Thread.sleep(3000);
-        System.out.println("\n\nWould you like to order an item? (Y/N): ");
-        userchoice = sc.nextLine();
-        if(userchoice.equalsIgnoreCase("Y")){
-            System.out.println("\nPlease insert money: ");
-            RegularVendingMachine.insertMoney();
-            System.out.println("Your current balance is :[" + bank.getUserTotalMoney() + "]");
-            if(bank.getUserTotalMoney() <= 0){
-                System.out.println("You do not have enough balance!");
-                System.out.print("Would you like to insert money? (Y/N): ");
-                userchoice = sc.nextLine();
-                if(userchoice.equalsIgnoreCase("Y")){
-                    RegularVendingMachine.insertMoney();
-                }
-                else{
-                    System.out.println("Exiting Vending Machine");
-                    return;
-                }
+        do{
+            System.out.println("[1] Test Vending Features");
+            System.out.println("[2] Maintenance Features");
+            System.out.println("[3] Exit");
+            System.out.print("Choose an option: ");
+            choice = Integer.parseInt(sc.nextLine());
+
+            if(choice == 1){
+                do{
+                    System.out.println("CURRENT BALANCE OF THE VENDING MACHINE [" + bank.getTotalMoney() + "]");
+                    //Thread.sleep(500);
+                    System.out.println("CURRENT BALANCE OF THE USER [" + bank.getUserTotalMoney() + "]");
+                    //Thread.sleep(500);
+                    System.out.println("These are all the available items:\n");
+                    RegularVendingMachine.displayAvailableItem();
+                    //Thread.sleep(3000);
+                    System.out.println("\n\nWould you like to order an item? (Y/N): ");
+                    userchoice = sc.nextLine();
+                    if(userchoice.equalsIgnoreCase("Y")) {
+                        System.out.println("\nPlease insert money: ");
+                        RegularVendingMachine.insertMoney();
+                        System.out.println("Your current balance is :[" + bank.getUserTotalMoney() + "]");
+                        if (bank.getUserTotalMoney() <= 0) {
+                            System.out.println("You do not have enough balance!");
+                            System.out.print("Would you like to insert money? (Y/N): ");
+                            userchoice = sc.nextLine();
+                            if (userchoice.equalsIgnoreCase("Y")) {
+                                RegularVendingMachine.insertMoney();
+                            } else {
+                                System.out.println("Exiting Vending Machine");
+                                return;
+                            }
+                        } else {
+                            RegularVendingMachine.displayAvailableItem();
+                            System.out.println("\n[A] Continue to Select Item");
+                            System.out.println("[B] Return Money");
+                            System.out.print("Select an option: ");
+                            userchoice2 = sc.nextLine();
+                            if (userchoice2.equalsIgnoreCase("A")) {
+                                boolean itemSelected = false;
+                                while (!itemSelected) {
+                                    System.out.print("\nPlease select an item from the choices above: ");
+                                    itemname = sc.nextLine();
+                                    itemSelected = RegularVendingMachine.selectItem(itemname);
+                                }
+                            } else {
+                                bank.updateUserMoney(1000, 0);
+                                bank.updateUserMoney(500, 0);
+                                bank.updateUserMoney(200, 0);
+                                bank.updateUserMoney(100, 0);
+                                bank.updateUserMoney(50, 0);
+                                bank.updateUserMoney(10, 0);
+                                bank.updateUserMoney(5, 0);
+                                bank.updateUserMoney(1, 0);
+                                bank.updateUserTotalMoney(0);
+                            }
+                        }
+                    }
+                    else{
+                        return;
+                    }
+                }while(!(userchoice.equalsIgnoreCase("N") || userchoice.equalsIgnoreCase("B")));
+            }
+            else if(choice == 2){
+                RegularVendingMachine.maintenance();
+            }
+            else if(choice == 3){
+                return;
             }
             else{
-                RegularVendingMachine.displayAvailableItem();
-                System.out.println("\n[A] Continue to Select Item");
-                System.out.println("[B] Return Money");
-                System.out.print("Select an option: ");
-                userchoice2 = sc.nextLine();
-                if (userchoice2.equalsIgnoreCase("A")) {
-                    boolean itemSelected = false;
-                    while (!itemSelected) {
-                        System.out.print("\nPlease select an item from the choices above: ");
-                        itemname = sc.nextLine();
-                        itemSelected = RegularVendingMachine.selectItem(itemname);
-                        
-                    }
-                }
-                else{
-                    bank.updateUserMoney(1000, 0);
-                    bank.updateUserMoney(500, 0);
-                    bank.updateUserMoney(200, 0);
-                    bank.updateUserMoney(100, 0);
-                    bank.updateUserMoney(50, 0);
-                    bank.updateUserMoney(10, 0);
-                    bank.updateUserMoney(5, 0);
-                    bank.updateUserMoney(1, 0);
-                    bank.updateUserTotalMoney(0);
-                }
+                System.out.println("Invalid choice!");
             }
-        }
-            
-        else{
-            return;
-        }
+        } while (choice < 1 || choice > 3);
+
     }
 
     public void exit(){

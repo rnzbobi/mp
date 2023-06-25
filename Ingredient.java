@@ -1,6 +1,6 @@
 public class Ingredient {
     private final String name;
-    private final int price;
+    private int price;
     private final int calories;
 
     public Ingredient(String name, int price, int calories){
@@ -19,5 +19,9 @@ public class Ingredient {
 
     public int getCalories() {
         return calories;
+    }
+
+    public void setPrice(int price){
+        this.price = price;
     }
 }

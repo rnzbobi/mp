@@ -23,7 +23,7 @@ public class RegularVendingMachine {
         this.Sales = new ArrayList<>();
     }
 
-    public boolean selectItem(String name) {
+    public boolean selectItem(String name) throws InterruptedException{
         boolean found = false;
         int price, total = 0;
         HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
@@ -38,6 +38,20 @@ public class RegularVendingMachine {
                 slots.put(ingredient,quantity);
                 total = bank.getUserTotalMoney() - price;
                 bank.updateUserTotalMoney(total);
+                System.out.println("Dispensing item");
+                Thread.sleep(500);
+                System.out.print(". ");
+                Thread.sleep(500);
+                System.out.print(". ");
+                Thread.sleep(500);
+                System.out.print(". \n");
+                System.out.println("Generating receipt");
+                Thread.sleep(500);
+                System.out.print(". ");
+                Thread.sleep(500);
+                System.out.print(". ");
+                Thread.sleep(500);
+                System.out.print(". \n");
                 found = true;
                 Log sale = new Log(ingredient.getName(),price,1);
                 Sales.add(sale);
@@ -50,10 +64,15 @@ public class RegularVendingMachine {
                 System.out.println("Thank you for your purchase!");
                 return true;
             }
-            else if(name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney() && quantity <= 0){
-                    System.out.println("[Error Processing]");
-                    return found;
+            else if(name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney()){
+                System.out.println("[Error Processing: INSUFFICIENT FUNDS] Please insert money.");
+                insertMoney();
+                return false;
                 }
+            else if(name.equalsIgnoreCase(ingredient.getName()) && quantity <= 0){
+                System.out.println("[Error Processing: INSUFFICIENT QUANTITY]");
+                return false;
+            }
         }
         if(!found) {
             System.out.println("[ERROR] The item you have selected is invalid!");
@@ -63,12 +82,12 @@ public class RegularVendingMachine {
         return false;
     }
 
-public void insertMoney() {
-    int i = 0;
-    int i2 = 0;
-    int usertotal = 0;
+    public void insertMoney() {
+        int i = 0;
+        int i2 = 0;
+        int usertotal = 0;
     
-    do {
+        do {
         i = 0;
         i2 = 0;
         System.out.println("[Choose a number that corresponds to your Bills/Coins] [Balance: " + bank.getUserTotalMoney() + "]");
@@ -198,7 +217,91 @@ public void insertMoney() {
     }
 
     public void maintenance() {
+        HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
+        String itemname;
+        int choice, replenish, setprice;
+        boolean found = false;
+        do{
+            System.out.println("Vending Machine [" + getName() + "]" + " is under MAINTENANCE");
+            displayAvailableItem();
+            System.out.println("[1] Replenish Stocks");
+            System.out.println("[2] Set Item Price");
+            System.out.println("[3] Collect Money");
+            System.out.println("[4] Replenish Money");
+            System.out.println("[5] Print Summary of Transactions");
+            System.out.println("[6] Display Inventory (Starting and Final)");
+            System.out.println("[7] Exit");
+            System.out.print("Enter your choice: ");
+            choice = Integer.parseInt(sc.nextLine());
 
+            switch (choice) {
+                case 1:
+                    found = false;
+                    displayAvailableItem();
+                    System.out.print("\nEnter the item that you wish to replenish: ");
+                    itemname = sc.nextLine();
+
+                    for (Map.Entry<Ingredient, Integer> items : availableitems.entrySet()) {
+                        Ingredient ingredient = items.getKey();
+                        int quantity = items.getValue();
+                        int price = ingredient.getPrice();
+                        if (itemname.equalsIgnoreCase(ingredient.getName())) {
+                            System.out.println("How much would you like to replenish?");
+                            replenish = Integer.parseInt(sc.nextLine());
+                            quantity += replenish;
+                            slots.put(ingredient,quantity);
+                            found = true;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("[ERROR] Item does not exist");
+                    }
+                    break;
+                case 2:
+                    found = false;
+                    displayAvailableItem();
+                    System.out.print("\nEnter the item that you wish to change price: ");
+                    itemname = sc.nextLine();
+
+                    for (Map.Entry<Ingredient, Integer> items : availableitems.entrySet()) {
+                        Ingredient ingredient = items.getKey();
+                        int quantity = items.getValue();
+                        int price = ingredient.getPrice();
+                        if (itemname.equalsIgnoreCase(ingredient.getName())) {
+                            System.out.print("How much would you like to set this product? ");
+                            setprice = Integer.parseInt(sc.nextLine());
+                            ingredient.setPrice(setprice);
+                        }
+                    }
+                    if(!found){
+                        System.out.println("[ERROR] Item does not exist");
+                    }
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 5:
+                    printSummaryTransaction();
+                    break;
+
+                case 6:
+                    displayStartingInventory();
+                    System.out.println("");
+                    displayEndingInventory();
+                    break;
+
+                case 7:
+                    break;
+
+                default: System.out.println("INVALID CHOICE!");
+            }
+        }while(choice != 7);
     }
 
     public void printSummaryTransaction() {
