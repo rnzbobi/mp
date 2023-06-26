@@ -64,7 +64,7 @@ public class RegularVendingMachine {
                 System.out.println("Item: " + ingredient.getName());
                 System.out.println("Price: Php " + price);
                 System.out.println("Tendered : " + (total + price));
-                System.out.println("Change : " + bank.getTotalMoney());
+                System.out.println("Change : " + total);
                 System.out.println("------------------------------");
                 System.out.println("Thank you for your purchase!\n");
                 return true;
@@ -439,8 +439,13 @@ public class RegularVendingMachine {
 
                 case 5:
                     System.out.print("\nPrinting Summary");
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                     System.out.print(". ");
+                    Thread.sleep(500);
+                    System.out.print(". ");
+                    Thread.sleep(500);
+                    System.out.print(". ");
+                    System.out.println("");
                     printSummaryTransaction();
                     break;
 
@@ -459,7 +464,7 @@ public class RegularVendingMachine {
     }
 
     public void printSummaryTransaction() {
-        System.out.println("===== SUMMARY OF TRANSACTION =====");
+        System.out.println("\n\n===== SUMMARY OF TRANSACTION =====");
         int total = 0;
         Map<String, Integer> itemQuantities = new HashMap<>();
         Map<String, Integer> itemPrices = new HashMap<>();
