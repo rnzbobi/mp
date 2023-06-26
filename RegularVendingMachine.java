@@ -25,7 +25,7 @@ public class RegularVendingMachine {
 
     public boolean selectItem(String name) throws InterruptedException{
         boolean found = false;
-        int price, total = 0;
+        int price, total = 0, totalowner;
         HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
         for(Map.Entry<Ingredient, Integer> items : availableitems.entrySet()){
             Ingredient ingredient = items.getKey();
@@ -38,6 +38,7 @@ public class RegularVendingMachine {
                 slots.put(ingredient,quantity);
                 total = bank.getUserTotalMoney() - price;
                 bank.updateUserTotalMoney(total);
+                totalowner = bank.getTotalMoney() + price;
                 System.out.println("Dispensing item");
                 Thread.sleep(500);
                 System.out.print(". ");
@@ -60,8 +61,10 @@ public class RegularVendingMachine {
                 System.out.println("------------------------------");
                 System.out.println("Item: " + ingredient.getName());
                 System.out.println("Price: Php " + price);
+                System.out.println("Tendered : " + (total + price));
+                System.out.println("Change : " + bank.getTotalMoney());
                 System.out.println("------------------------------");
-                System.out.println("Thank you for your purchase!");
+                System.out.println("Thank you for your purchase!\n");
                 return true;
             }
             else if(name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney()){
@@ -156,6 +159,79 @@ public class RegularVendingMachine {
     
 }
 
+    public void replenishMoney() {
+        int i = 0;
+        int i2 = 0;
+        int total = bank.getTotalMoney();
+
+        do {
+            i = 0;
+            i2 = 0;
+            System.out.println("[Choose a number that corresponds to your Bills/Coins] [Balance: " + bank.getTotalMoney() + "]");
+            System.out.println("|1| 1000 Pesos |2| 500 Pesos |3| 200 Pesos");
+            System.out.println("|4| 100 Pesos  |5| 50 Pesos  |6| 20 Pesos");
+            System.out.println("|7| 10 Pesos   |8| 5 Pesos   |9| 1 Pesos");
+            System.out.println("|10| EXIT");
+            System.out.print("[Enter] ");
+            i = Integer.parseInt(sc.nextLine());
+
+            if (i == 10) {
+                break;
+            }
+
+            System.out.print("How many: ");
+            i2 = Integer.parseInt(sc.nextLine());
+
+            switch (i) {
+                case 1 -> {
+                    bank.updateMoney(1000, i2);
+                    total += 1000 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 2 -> {
+                    bank.updateMoney(500, i2);
+                    total += 500 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 3 -> {
+                    bank.updateMoney(200, i2);
+                    total += 200 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 4 -> {
+                    bank.updateMoney(100, i2);
+                    total += 100 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 5 -> {
+                    bank.updateMoney(50, i2);
+                    total += 50 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 6 -> {
+                    bank.updateMoney(20, i2);
+                    total += 20 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 7 -> {
+                    bank.updateMoney(10, i2);
+                    total += 10 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 8 -> {
+                    bank.updateMoney(5, i2);
+                    total += 5 * i2;
+                    bank.updateTotalMoney(total);
+                }
+                case 9 -> {
+                    bank.updateMoney(1, i2);
+                    total += i2;
+                    bank.updateTotalMoney(total);
+                }
+            }
+        } while (i != 10);
+    }
+
     public void displayStartingInventory() {
         System.out.println("=== Your Starting Inventory ===");
         HashMap<Ingredient, Integer> startingStocks = inventory[0].getStocks();
@@ -216,7 +292,7 @@ public class RegularVendingMachine {
         System.out.println("\n\n");
     }
 
-    public void maintenance() {
+    public void maintenance() throws InterruptedException{
         HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
         String itemname;
         int choice, replenish, setprice;
@@ -279,7 +355,24 @@ public class RegularVendingMachine {
                     break;
 
                 case 3:
-
+                    System.out.print("\nCollecting money");
+                    Thread.sleep(1000);
+                    System.out.print(". ");
+                    Thread.sleep(1000);
+                    System.out.print(". ");
+                    Thread.sleep(1000);
+                    System.out.print(". \n");
+                    bank.updateTotalMoney(0);
+                    bank.updateMoney(1000,0);
+                    bank.updateMoney(500,0);
+                    bank.updateMoney(200,0);
+                    bank.updateMoney(100,0);
+                    bank.updateMoney(50,0);
+                    bank.updateMoney(20,0);
+                    bank.updateMoney(10,0);
+                    bank.updateMoney(5,0);
+                    bank.updateMoney(1,0);
+                    System.out.print("\nMoney has been dispensed.");
                     break;
 
                 case 4:
@@ -329,9 +422,10 @@ public class RegularVendingMachine {
 
             System.out.println(itemName + " Quantity Sold: " + itemQuantity);
             System.out.println(itemName + " Total Price: " + itemTotalPrice);
+            System.out.println("==========================");
         }
 
-        System.out.println("Total Price for All Item: " + total);
+        System.out.println("Total Price Sold for All Item: " + total);
     }
 
     public String getName(){
