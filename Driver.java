@@ -10,9 +10,9 @@ public class Driver {
         boolean vendingMachineCreated = false;
         int choice;
         do {
-            System.out.println("Choose an option: burat ");
+            System.out.println("Choose an option: ");
             System.out.println("1. Create a Vending Machine");
-            System.out.println("2. Test Vending Machine"); 
+            System.out.println("2. Test Vending Machine");
             System.out.println("3. Exit");
             System.out.println("Enter your choice: ");
 
