@@ -9,6 +9,7 @@ public class RegularVendingMachine {
     private HashMap<String, Integer> transactions;
     private Inventory[] inventory;
     private ArrayList<Log> Sales;
+    private final static int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
     Scanner sc = new Scanner(System.in);
 
     public RegularVendingMachine(String name, HashMap<Ingredient,Integer> slots2, Bank bank){
@@ -39,6 +40,7 @@ public class RegularVendingMachine {
                 total = bank.getUserTotalMoney() - price;
                 bank.updateUserTotalMoney(total);
                 totalowner = bank.getTotalMoney() + price;
+                bank.updateTotalMoney(totalowner);
                 System.out.println("Dispensing item");
                 Thread.sleep(500);
                 System.out.print(". ");
@@ -160,13 +162,19 @@ public class RegularVendingMachine {
 }
 
     public void replenishMoney() {
+        HashMap<Integer,Integer> tempbank;
         int i = 0;
         int i2 = 0;
-        int total = bank.getTotalMoney();
+        int total = 0;
+        int value = 0;
+        int temp = 0;
 
         do {
             i = 0;
             i2 = 0;
+            value = 0;
+            total = bank.getTotalMoney();
+            tempbank = bank.getMoney();
             System.out.println("[Choose a number that corresponds to your Bills/Coins] [Balance: " + bank.getTotalMoney() + "]");
             System.out.println("|1| 1000 Pesos |2| 500 Pesos |3| 200 Pesos");
             System.out.println("|4| 100 Pesos  |5| 50 Pesos  |6| 20 Pesos");
@@ -184,48 +192,67 @@ public class RegularVendingMachine {
 
             switch (i) {
                 case 1 -> {
+                    value = tempbank.get(1000);
+                    temp = i2;
+                    i2 += value;
                     bank.updateMoney(1000, i2);
-                    total += 1000 * i2;
+                    total += 1000 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 2 -> {
+                    value = tempbank.get(500);
+                    i2 += value;
                     bank.updateMoney(500, i2);
-                    total += 500 * i2;
+                    total += 500 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 3 -> {
+                    value = tempbank.get(200);
+                    i2 += value;
                     bank.updateMoney(200, i2);
-                    total += 200 * i2;
+                    total += 200 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 4 -> {
+                    value = tempbank.get(100);
+                    i2 += value;
                     bank.updateMoney(100, i2);
-                    total += 100 * i2;
+                    total += 100 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 5 -> {
+                    value = tempbank.get(50);
+                    i2 += value;
                     bank.updateMoney(50, i2);
-                    total += 50 * i2;
+                    total += 50 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 6 -> {
+                    value = tempbank.get(20);
+                    i2 += value;
                     bank.updateMoney(20, i2);
-                    total += 20 * i2;
+                    total += 20 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 7 -> {
+                    value = tempbank.get(10);
+                    i2 += value;
                     bank.updateMoney(10, i2);
-                    total += 10 * i2;
+                    total += 10 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 8 -> {
+                    value = tempbank.get(5);
+                    i2 += value;
                     bank.updateMoney(5, i2);
-                    total += 5 * i2;
+                    total += 5 * temp;
                     bank.updateTotalMoney(total);
                 }
                 case 9 -> {
+                    value = tempbank.get(1);
+                    i2 += value;
                     bank.updateMoney(1, i2);
-                    total += i2;
+                    total += temp;
                     bank.updateTotalMoney(total);
                 }
             }
@@ -295,7 +322,7 @@ public class RegularVendingMachine {
     public void maintenance() throws InterruptedException{
         HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
         String itemname;
-        int choice, replenish, setprice;
+        int choice, replenish, setprice, i;
         boolean found = false;
         do{
             System.out.println("Vending Machine [" + getName() + "]" + " is under MAINTENANCE");
@@ -362,24 +389,58 @@ public class RegularVendingMachine {
                     System.out.print(". ");
                     Thread.sleep(1000);
                     System.out.print(". \n");
-                    bank.updateTotalMoney(0);
-                    bank.updateMoney(1000,0);
-                    bank.updateMoney(500,0);
-                    bank.updateMoney(200,0);
-                    bank.updateMoney(100,0);
-                    bank.updateMoney(50,0);
-                    bank.updateMoney(20,0);
-                    bank.updateMoney(10,0);
-                    bank.updateMoney(5,0);
-                    bank.updateMoney(1,0);
+                    System.out.println("[BANK]");
+                    System.out.println("[Quantity - Bill/Coins]");
+                    HashMap<Integer, Integer> money = bank.getMoney();
+                    i = 1;
+                    for (int denomination : denominations) {
+                        System.out.println("(" + i + ") " + "[" + money.get(denomination) + " - " + denomination + "]");
+                        i++;
+                    }
+                    System.out.println("Choose Bill/Coins you will collect!");
+
+                    int billIndex = -1;
+                    int total2 = bank.getTotalMoney();
+                    int updatedTotal = 0;
+                    int newQuantity = 0;
+                    while (billIndex < 0 || billIndex >= denominations.length) {
+                        System.out.println("Enter the index of the bill/coin (1 - " + (denominations.length) + "): ");
+                        billIndex = Integer.parseInt(sc.nextLine());
+                    }
+
+                    int chosenDenomination = denominations[billIndex - 1];
+
+                    int currentQuantity = bank.getMoney().get(chosenDenomination);
+                    if (currentQuantity == 0) {
+                        System.out.println("No more bills/coins available.");
+                    } else {
+                        System.out.println("Enter the quantity to collect (1 - " + currentQuantity + "): ");
+
+                        int quantityToCollect = -1;
+                        while (quantityToCollect < 1 || quantityToCollect > currentQuantity) {
+                            quantityToCollect = Integer.parseInt(sc.nextLine());
+                        }
+
+                        newQuantity = currentQuantity - quantityToCollect;
+                        bank.updateMoney(chosenDenomination, newQuantity);
+                        updatedTotal = total2 - (chosenDenomination * quantityToCollect);
+                        bank.updateTotalMoney(updatedTotal);
+                        total2 = updatedTotal;
+
+                        System.out.println("Successfully collected " + quantityToCollect + " bills/coins of [" + chosenDenomination + "]");
+                        System.out.println("Updated quantity for " + chosenDenomination + ": " + newQuantity);
+                    }
                     System.out.print("\nMoney has been dispensed.");
                     break;
 
                 case 4:
-
+                    replenishMoney();
                     break;
 
                 case 5:
+                    System.out.print("\nPrinting Summary");
+                    Thread.sleep(1000);
+                    System.out.print(". ");
                     printSummaryTransaction();
                     break;
 
