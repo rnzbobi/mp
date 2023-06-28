@@ -19,67 +19,116 @@ public class RegularVendingMachine {
         this.inventory = new Inventory[2];
         inventory[0] = new Inventory();
         inventory[1] = new Inventory();
-        inventory[0].setStocks(slots2);
+        inventory[0].setStocks(new HashMap<>(slots2));
         inventory[1].setStocks(slots2);
         this.Sales = new ArrayList<>();
     }
 
-    public boolean selectItem(String name) throws InterruptedException{
+    public boolean selectItem(String name) throws InterruptedException {
         boolean found = false;
         int price, total = 0, totalowner;
-        HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
-        for(Map.Entry<Ingredient, Integer> items : availableitems.entrySet()){
+        HashMap<Ingredient, Integer> availableItems = inventory[1].getStocks();
+
+        for (Map.Entry<Ingredient, Integer> items : availableItems.entrySet()) {
             Ingredient ingredient = items.getKey();
             int quantity = items.getValue();
             price = ingredient.getPrice();
-            if(name.equalsIgnoreCase(ingredient.getName()) && price <= bank.getUserTotalMoney() && quantity > 0){
+
+            if (name.equalsIgnoreCase(ingredient.getName()) && price <= bank.getUserTotalMoney() && quantity > 0) {
                 System.out.println("You have selected the item [" + ingredient.getName() + "]\n");
                 System.out.println("The calories of this item is: " + ingredient.getCalories() + "\n");
-                quantity--;
-                slots.put(ingredient,quantity);
+
                 total = bank.getUserTotalMoney() - price;
-                bank.updateUserTotalMoney(total);
                 totalowner = bank.getTotalMoney() + price;
-                bank.updateTotalMoney(totalowner);
-                System.out.println("Dispensing item");
-                Thread.sleep(500);
-                System.out.print(". ");
-                Thread.sleep(500);
-                System.out.print(". ");
-                Thread.sleep(500);
-                System.out.print(". \n");
-                System.out.println("Generating receipt");
-                Thread.sleep(500);
-                System.out.print(". ");
-                Thread.sleep(500);
-                System.out.print(". ");
-                Thread.sleep(500);
-                System.out.print(". \n");
-                found = true;
-                Log sale = new Log(ingredient.getName(),price,1);
-                Sales.add(sale);
-                System.out.println("------------------------------");
-                System.out.println("         RECEIPT");
-                System.out.println("------------------------------");
-                System.out.println("Item: " + ingredient.getName());
-                System.out.println("Price: Php " + price);
-                System.out.println("Tendered : " + (total + price));
-                System.out.println("Change : " + total);
+
+                // Calculate change using the VendingMachine class
+                VendingMachine vendingMachine = new VendingMachine();
+                int amountPaid = total + price;
+                int amountToPay = price;
+                Map<Integer, Integer> change = vendingMachine.dispenseChange(amountPaid, amountToPay);
+                if (change != null) {
+                    quantity--;
+                    slots.put(ingredient, quantity);
+                    bank.updateUserTotalMoney(total);
+                    bank.updateTotalMoney(totalowner);
+
+                    System.out.println("Dispensing item");
+                    Thread.sleep(500);
+                    System.out.print(". ");
+                    Thread.sleep(500);
+                    System.out.print(". ");
+                    Thread.sleep(500);
+                    System.out.print(". \n");
+                    System.out.println("Generating receipt");
+                    Thread.sleep(500);
+                    System.out.print(". ");
+                    Thread.sleep(500);
+                    System.out.print(". ");
+                    Thread.sleep(500);
+                    System.out.print(". \n");
+
+                    found = true;
+                    Log sale = new Log(ingredient.getName(), price, 1);
+                    Sales.add(sale);
+
+                    System.out.println("------------------------------");
+                    System.out.println("         RECEIPT");
+                    System.out.println("------------------------------");
+                    System.out.println("Item: " + ingredient.getName());
+                    System.out.println("Price: Php " + price);
+                    System.out.println("Tendered: " + (total + price));
+                    System.out.println("Change: " + total);
+                    for (int denomination : change.keySet()) {
+                        int numNotes = change.get(denomination);
+                        if(numNotes != 0){
+                            System.out.println("Change Denomination: " + denomination + ", Quantity: " + numNotes);
+                        }
+                    }
+                    bank.updateUserMoney(1000, 0);
+                    bank.updateUserMoney(500, 0);
+                    bank.updateUserMoney(200, 0);
+                    bank.updateUserMoney(100, 0);
+                    bank.updateUserMoney(50, 0);
+                    bank.updateUserMoney(10, 0);
+                    bank.updateUserMoney(5, 0);
+                    bank.updateUserMoney(1, 0);
+                    bank.updateUserTotalMoney(0);
+                } else {
+                    System.out.println("Cannot make exact change. Please contact the operator.");
+                    bank.updateUserMoney(1000, 0);
+                    bank.updateUserMoney(500, 0);
+                    bank.updateUserMoney(200, 0);
+                    bank.updateUserMoney(100, 0);
+                    bank.updateUserMoney(50, 0);
+                    bank.updateUserMoney(10, 0);
+                    bank.updateUserMoney(5, 0);
+                    bank.updateUserMoney(1, 0);
+                    bank.updateUserTotalMoney(0);
+                }
                 System.out.println("------------------------------");
                 System.out.println("Thank you for your purchase!\n");
+                inventory[1].setStocks(slots);
                 return true;
-            }
-            else if(name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney()){
+            } else if (name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney()) {
                 System.out.println("[Error Processing: INSUFFICIENT FUNDS] Please insert money.");
                 insertMoney();
                 return false;
-                }
-            else if(name.equalsIgnoreCase(ingredient.getName()) && quantity <= 0){
+            } else if (name.equalsIgnoreCase(ingredient.getName()) && quantity <= 0) {
                 System.out.println("[Error Processing: INSUFFICIENT QUANTITY]");
+                bank.updateUserMoney(1000, 0);
+                bank.updateUserMoney(500, 0);
+                bank.updateUserMoney(200, 0);
+                bank.updateUserMoney(100, 0);
+                bank.updateUserMoney(50, 0);
+                bank.updateUserMoney(10, 0);
+                bank.updateUserMoney(5, 0);
+                bank.updateUserMoney(1, 0);
+                bank.updateUserTotalMoney(0);
                 return false;
             }
         }
-        if(!found) {
+
+        if (!found) {
             System.out.println("[ERROR] The item you have selected is invalid!");
             return false;
         }
@@ -87,14 +136,18 @@ public class RegularVendingMachine {
         return false;
     }
 
+
     public void insertMoney() {
         int i = 0;
         int i2 = 0;
+        int i3 = 0;
+        int i4 = 0;
         int usertotal = 0;
     
         do {
         i = 0;
         i2 = 0;
+        usertotal = bank.getUserTotalMoney();
         System.out.println("[Choose a number that corresponds to your Bills/Coins] [Balance: " + bank.getUserTotalMoney() + "]");
         System.out.println("|1| 1000 Pesos |2| 500 Pesos |3| 200 Pesos");
         System.out.println("|4| 100 Pesos  |5| 50 Pesos  |6| 20 Pesos");
@@ -112,47 +165,75 @@ public class RegularVendingMachine {
 
         switch (i) {
             case 1 -> {
-                bank.updateUserMoney(1000, i2);
+                i3 = bank.getMoney().get(1000) + i2;
+                i4 = bank.getUserMoney().get(1000) + i2;
+                bank.updateUserMoney(1000, i4);
+                bank.updateMoney(1000,i3);
                 usertotal += 1000 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
+
             case 2 -> {
-                bank.updateUserMoney(500, i2);
+                i3 = bank.getMoney().get(500) + i2;
+                i4 = bank.getUserMoney().get(500) + i2;
+                bank.updateUserMoney(500, i4);
+                bank.updateMoney(500,i3);
                 usertotal += 500 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 3 -> {
-                bank.updateUserMoney(200, i2);
+                i3 = bank.getMoney().get(200) + i2;
+                i4 = bank.getUserMoney().get(200) + i2;
+                bank.updateUserMoney(200, i4);
+                bank.updateMoney(200,i3);
                 usertotal += 200 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 4 -> {
-                bank.updateUserMoney(100, i2);
+                i3 = bank.getMoney().get(100) + i2;
+                i4 = bank.getUserMoney().get(100) + i2;
+                bank.updateUserMoney(100, i4);
+                bank.updateMoney(100,i3);
                 usertotal += 100 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 5 -> {
-                bank.updateUserMoney(50, i2);
+                i3 = bank.getMoney().get(50) + i2;
+                i4 = bank.getUserMoney().get(50) + i2;
+                bank.updateUserMoney(50, i4);
+                bank.updateMoney(50,i3);
                 usertotal += 50 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 6 -> {
-                bank.updateUserMoney(20, i2);
+                i3 = bank.getMoney().get(20) + i2;
+                i4 = bank.getUserMoney().get(20) + i2;
+                bank.updateUserMoney(20, i4);
+                bank.updateMoney(20,i3);
                 usertotal += 20 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 7 -> {
-                bank.updateUserMoney(10, i2);
+                i3 = bank.getMoney().get(10) + i2;
+                i4 = bank.getUserMoney().get(10) + i2;
+                bank.updateUserMoney(10, i4);
+                bank.updateMoney(10,i3);
                 usertotal += 10 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 8 -> {
-                bank.updateUserMoney(5, i2);
+                i3 = bank.getMoney().get(5) + i2;
+                i4 = bank.getUserMoney().get(5) + i2;
+                bank.updateUserMoney(5, i4);
+                bank.updateMoney(5,i3);
                 usertotal += 5 * i2;
                 bank.updateUserTotalMoney(usertotal);
             }
             case 9 -> {
-                bank.updateUserMoney(1, i2);
+                i3 = bank.getMoney().get(1) + i2;
+                i4 = bank.getUserMoney().get(1) + i2;
+                bank.updateUserMoney(1, i4);
+                bank.updateMoney(1,i3);
                 usertotal += i2;
                 bank.updateUserTotalMoney(usertotal);
             }
@@ -201,6 +282,7 @@ public class RegularVendingMachine {
                 }
                 case 2 -> {
                     value = tempbank.get(500);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(500, i2);
                     total += 500 * temp;
@@ -208,6 +290,7 @@ public class RegularVendingMachine {
                 }
                 case 3 -> {
                     value = tempbank.get(200);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(200, i2);
                     total += 200 * temp;
@@ -215,6 +298,7 @@ public class RegularVendingMachine {
                 }
                 case 4 -> {
                     value = tempbank.get(100);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(100, i2);
                     total += 100 * temp;
@@ -222,6 +306,7 @@ public class RegularVendingMachine {
                 }
                 case 5 -> {
                     value = tempbank.get(50);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(50, i2);
                     total += 50 * temp;
@@ -229,6 +314,7 @@ public class RegularVendingMachine {
                 }
                 case 6 -> {
                     value = tempbank.get(20);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(20, i2);
                     total += 20 * temp;
@@ -236,6 +322,7 @@ public class RegularVendingMachine {
                 }
                 case 7 -> {
                     value = tempbank.get(10);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(10, i2);
                     total += 10 * temp;
@@ -243,6 +330,7 @@ public class RegularVendingMachine {
                 }
                 case 8 -> {
                     value = tempbank.get(5);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(5, i2);
                     total += 5 * temp;
@@ -250,9 +338,10 @@ public class RegularVendingMachine {
                 }
                 case 9 -> {
                     value = tempbank.get(1);
+                    temp = i2;
                     i2 += value;
                     bank.updateMoney(1, i2);
-                    total += temp;
+                    total += 1 * temp;
                     bank.updateTotalMoney(total);
                 }
             }
@@ -374,6 +463,7 @@ public class RegularVendingMachine {
                             System.out.print("How much would you like to set this product? ");
                             setprice = Integer.parseInt(sc.nextLine());
                             ingredient.setPrice(setprice);
+                            found = true;
                         }
                     }
                     if(!found){
@@ -403,7 +493,7 @@ public class RegularVendingMachine {
                     int total2 = bank.getTotalMoney();
                     int updatedTotal = 0;
                     int newQuantity = 0;
-                    while (billIndex < 0 || billIndex >= denominations.length) {
+                    while (billIndex < 0 || billIndex > denominations.length) {
                         System.out.println("Enter the index of the bill/coin (1 - " + (denominations.length) + "): ");
                         billIndex = Integer.parseInt(sc.nextLine());
                     }

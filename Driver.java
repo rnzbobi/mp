@@ -37,12 +37,10 @@ public class Driver {
                     Ingredient Espresso = new Ingredient("Espresso", 349, 3);
 
                     System.out.print("Enter the name of your Coffee Vending Machine: ");
-                    name = sc.next();
-                    sc.nextLine(); // Consume the newline character
+                    name = sc.nextLine();
                     do {
                         System.out.print("Type of Coffee Vending Machine [Regular] | [Special]: ");
-                        type = sc.next();
-                        sc.nextLine(); // Consume the newline character
+                        type = sc.nextLine();
                     } while (!(type.equalsIgnoreCase("Regular")) && !(type.equalsIgnoreCase("Special")));
 
                     System.out.print("How many items do you want for all?:");

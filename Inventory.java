@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Inventory {
-    private static HashMap<Ingredient,Integer> slots;
+    private HashMap<Ingredient,Integer> slots;
     private static HashMap<String,Integer> money;
 
     public void updateMoney(HashMap<String,Integer> money){
@@ -17,6 +17,6 @@ public class Inventory {
     }
 
     public void setStocks(HashMap<Ingredient,Integer> slots){
-        Inventory.slots = slots;
+        this.slots = slots;
     }
 }

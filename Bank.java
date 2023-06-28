@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Bank {
@@ -12,25 +13,29 @@ public class Bank {
         Bank.totalMoney = totalMoney;
         Bank.userTotalMoney = userTotalMoney;
     }
-    
-    public HashMap<Integer,Integer> getMoney(){
+
+    public static HashMap<Integer,Integer> getMoney(){
         return money;
     }
 
-    public HashMap<Integer,Integer> getUserMoney(){
+    public static HashMap<Integer,Integer> getUserMoney(){
         return usermoney;
     }
 
-    public int getTotalMoney(){
+    public static int getTotalMoney(){
         return totalMoney;
     }
 
-    public int getUserTotalMoney(){
+    public static int getUserTotalMoney(){
         return userTotalMoney;
     }
 
     public void updateMoney(int denomination, int quantity){
         Bank.money.put(denomination,quantity);
+    }
+
+    public void updateMoneyMap(HashMap<Integer,Integer> money){
+        Bank.money = money;
     }
 
     public void updateUserMoney(int denomination, int quantity){

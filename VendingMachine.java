@@ -145,8 +145,52 @@ public class VendingMachine {
         } while (choice < 1 || choice > 3);
 
     }
+    public Map<Integer, Integer> dispenseChange(int amountPaid, int amountToPay) {
+        int changeAmount = amountPaid - amountToPay;
+        int changeValue;
+        int userValue;
+        int totalValue;
+        int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
+        Map<Integer, Integer> change = new HashMap<>();
 
-    public void exit(){
+        // Create a copy of the owner's balance
+        HashMap<Integer, Integer> ownerBalance = new HashMap<>(Bank.getMoney());
+
+        // Subtract the amount to be dispensed from the owner's balance
+        for (int denomination : denominations) {
+            if (changeAmount >= denomination) {
+                int numNotes = Math.min(changeAmount / denomination, ownerBalance.getOrDefault(denomination, 0));
+                change.put(denomination, numNotes);
+                changeAmount -= numNotes * denomination;
+                ownerBalance.put(denomination, ownerBalance.getOrDefault(denomination, 0) - numNotes);
+            }
+        }
+
+        if (changeAmount == 0) {
+            // Update the owner's balance with the dispensed change
+            Bank bank = new Bank(ownerBalance, Bank.getUserMoney(), Bank.getTotalMoney(), Bank.getUserTotalMoney());
+            bank.updateMoneyMap(ownerBalance);
+            return change;
+        } else {
+            // Cannot make exact change, return the highest denomination bill to the user
+            int highestDenomination = 0;
+            for (int denomination : denominations) {
+                if (ownerBalance.containsKey(denomination) && ownerBalance.get(denomination) > 0) {
+                    highestDenomination = denomination;
+                    break;
+                }
+            }
+
+            if (highestDenomination > 0) {
+                System.out.println("Cannot make exact change. Returning the " + highestDenomination + " peso bill to the user.");
+                return null;
+            } else {
+                System.out.println("Error: Insufficient change available.");
+                return null;
+            }
+        }
+    }
+public void exit(){
         System.exit(0);
     }
 }
