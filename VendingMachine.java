@@ -1,5 +1,8 @@
 import java.util.*;
-
+/**
+ * The VendingMachine class represents a vending machine that can be of two types: Regular or Special.
+ * It manages the money, inventory, and functionality of the vending machine.
+ */
 public class VendingMachine {
     private SpecialVendingMachine SpecialVendingMachine;
     private RegularVendingMachine RegularVendingMachine;
@@ -8,7 +11,14 @@ public class VendingMachine {
     private Bank bank;
     private final static String[] types = {"Regular", "Special"};
     private final static int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
-
+    /**
+     * Creates a vending machine with the specified name, type, and inventory slots.
+     *
+     * @param name  the name of the vending machine
+     * @param type  the type of the vending machine ("Regular" or "Special")
+     * @param slots the inventory slots of the vending machine
+     * @throws InterruptedException if the thread is interrupted while sleeping
+     */
     public void createVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
 
@@ -60,7 +70,11 @@ public class VendingMachine {
                         System.out.println("Invalid vending machine type.");
                     }
     }
-    
+    /**
+     * Tests the functionality of the vending machine.
+     *
+     * @throws InterruptedException if the thread is interrupted while sleeping
+     */
     public void testVendingMachine() throws InterruptedException {
         String itemname, userchoice, userchoice2;
         int choice;
@@ -145,6 +159,14 @@ public class VendingMachine {
         } while (choice < 1 || choice > 3);
 
     }
+    /**
+     * Dispenses the change to the user based on the amount paid and the amount to be paid.
+     *
+     * @param amountPaid   the amount paid by the user
+     * @param amountToPay  the amount to be paid for the item
+     * @return a map representing the denominations and quantities of the change to be dispensed,
+     *         or null if change cannot be made
+     */
     public Map<Integer, Integer> dispenseChange(int amountPaid, int amountToPay) {
         int changeAmount = amountPaid - amountToPay;
         int changeValue;
@@ -190,7 +212,10 @@ public class VendingMachine {
             }
         }
     }
-public void exit(){
+    /**
+     * Exits the program with a status code of 0.
+     */
+    public void exit(){
         System.exit(0);
+        }
     }
-}

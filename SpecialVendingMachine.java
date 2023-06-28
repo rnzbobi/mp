@@ -11,9 +11,6 @@ public class SpecialVendingMachine {
         return true;
     }
 
-    public void updateInventory(Slot slot, Inventory inventory) {
-        
-    }
 
     public void displayInventory() {
         System.out.println("This is the starting inventory: ");

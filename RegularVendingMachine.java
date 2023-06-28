@@ -1,17 +1,25 @@
 import java.text.DecimalFormat;
 import java.util.*;
-
+/**
+ * The RegularVendingMachine class represents a regular vending machine.
+ * It allows users to select items, insert money, and perform various operations.
+ */
 public class RegularVendingMachine {
     private final String name;
     private final String type = "Regular";
     private static HashMap<Ingredient, Integer> slots;
     private Bank bank;
-    private HashMap<String, Integer> transactions;
     private Inventory[] inventory;
     private ArrayList<Log> Sales;
     private final static int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
     Scanner sc = new Scanner(System.in);
-
+    /**
+     * Constructs a RegularVendingMachine object with the given name, slots, and bank.
+     *
+     * @param name   the name of the vending machine
+     * @param slots2 the available slots in the vending machine
+     * @param bank   the bank associated with the vending machine
+     */
     public RegularVendingMachine(String name, HashMap<Ingredient,Integer> slots2, Bank bank){
         this.name = name;
         this.bank = bank;
@@ -23,7 +31,13 @@ public class RegularVendingMachine {
         inventory[1].setStocks(slots2);
         this.Sales = new ArrayList<>();
     }
-
+    /**
+     * Selects an item from the vending machine based on the provided item name.
+     *
+     * @param name the name of the item to select
+     * @return true if the item was successfully selected, false otherwise
+     * @throws InterruptedException if the thread is interrupted during the process
+     */
     public boolean selectItem(String name) throws InterruptedException {
         boolean found = false;
         int price, total = 0, totalowner;
@@ -35,9 +49,10 @@ public class RegularVendingMachine {
             price = ingredient.getPrice();
 
             if (name.equalsIgnoreCase(ingredient.getName()) && price <= bank.getUserTotalMoney() && quantity > 0) {
+                // Item found and user has sufficient funds and quantity is available
                 System.out.println("You have selected the item [" + ingredient.getName() + "]\n");
                 System.out.println("The calories of this item is: " + ingredient.getCalories() + "\n");
-
+                // Update totals and quantities
                 total = bank.getUserTotalMoney() - price;
                 totalowner = bank.getTotalMoney() + price;
 
@@ -47,11 +62,14 @@ public class RegularVendingMachine {
                 int amountToPay = price;
                 Map<Integer, Integer> change = vendingMachine.dispenseChange(amountPaid, amountToPay);
                 if (change != null) {
+                    // Sufficient change available
+
+                    // Update quantities and money
                     quantity--;
                     slots.put(ingredient, quantity);
                     bank.updateUserTotalMoney(total);
                     bank.updateTotalMoney(totalowner);
-
+                    // Display progress messages
                     System.out.println("Dispensing item");
                     Thread.sleep(500);
                     System.out.print(". ");
@@ -94,6 +112,7 @@ public class RegularVendingMachine {
                     bank.updateUserMoney(1, 0);
                     bank.updateUserTotalMoney(0);
                 } else {
+                    // Insufficient change available
                     System.out.println("Cannot make exact change. Please contact the operator.");
                     bank.updateUserMoney(1000, 0);
                     bank.updateUserMoney(500, 0);
@@ -110,10 +129,12 @@ public class RegularVendingMachine {
                 inventory[1].setStocks(slots);
                 return true;
             } else if (name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney()) {
+                // Item found but user does not have sufficient funds
                 System.out.println("[Error Processing: INSUFFICIENT FUNDS] Please insert money.");
                 insertMoney();
                 return false;
             } else if (name.equalsIgnoreCase(ingredient.getName()) && quantity <= 0) {
+                // Item found but quantity is not available
                 System.out.println("[Error Processing: INSUFFICIENT QUANTITY]");
                 bank.updateUserMoney(1000, 0);
                 bank.updateUserMoney(500, 0);
@@ -136,7 +157,9 @@ public class RegularVendingMachine {
         return false;
     }
 
-
+    /**
+     * Inserts money into the vending machine.
+     */
     public void insertMoney() {
         int i = 0;
         int i2 = 0;
@@ -241,6 +264,9 @@ public class RegularVendingMachine {
     } while (i != 10);
     
 }
+    /**
+     * Replenishes the money in the vending machine.
+     */
 
     public void replenishMoney() {
         HashMap<Integer,Integer> tempbank;
@@ -347,7 +373,11 @@ public class RegularVendingMachine {
             }
         } while (i != 10);
     }
-
+    /**
+     * Displays the starting inventory of the vending machine.
+     * It retrieves the starting stocks from the inventory and prints each item
+     * along with its quantity.
+     */
     public void displayStartingInventory() {
         System.out.println("=== Your Starting Inventory ===");
         HashMap<Ingredient, Integer> startingStocks = inventory[0].getStocks();
@@ -357,7 +387,11 @@ public class RegularVendingMachine {
             System.out.println("Item [" + ingredient.getName() + "]: [" + quantity + "]");
         }
     }
-    
+    /**
+     * Displays the ending inventory of the vending machine.
+     * It retrieves the ending stocks from the inventory and prints each item
+     * along with its quantity.
+     */
     public void displayEndingInventory() {
         HashMap<Ingredient, Integer> endingStocks = inventory[1].getStocks();
         System.out.println("=== Your Ending Inventory ===");
@@ -367,7 +401,10 @@ public class RegularVendingMachine {
             System.out.println("Item [" + ingredient.getName() + "]: [" + quantity + "]");
             }
     }
-
+    /**
+     * Displays the available items in the vending machine.
+     * It formats the item information and prints it in a structured manner.
+     */
     public void displayAvailableItem() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         int i = 1;
@@ -407,7 +444,13 @@ public class RegularVendingMachine {
 
         System.out.println("\n\n");
     }
-
+    /**
+     * Performs maintenance operations on the vending machine.
+     * It allows replenishing stocks, setting item prices, collecting money,
+     * replenishing money, printing a summary of transactions, and displaying
+     * the inventory.
+     * @throws InterruptedException if the thread is interrupted during sleep
+     */
     public void maintenance() throws InterruptedException{
         HashMap<Ingredient, Integer> availableitems = inventory[1].getStocks();
         String itemname;
@@ -552,7 +595,12 @@ public class RegularVendingMachine {
             }
         }while(choice != 7);
     }
-
+    /**
+     * Prints a summary of the transactions made in the vending machine.
+     * It calculates the total price, quantity sold, and total price for each item,
+     * and prints the information for each item along with the total price sold
+     * for all items.
+     */
     public void printSummaryTransaction() {
         System.out.println("\n\n===== SUMMARY OF TRANSACTION =====");
         int total = 0;
@@ -583,11 +631,17 @@ public class RegularVendingMachine {
 
         System.out.println("Total Price Sold for All Item: " + total);
     }
-
+    /**
+     * Retrieves the name of the vending machine.
+     * @return the name of the vending machine
+     */
     public String getName(){
         return name;
     }
-
+    /**
+     * Retrieves the type of the vending machine.
+     * @return the type of the vending machine
+     */
     public String getType(){
         return type;
     }
