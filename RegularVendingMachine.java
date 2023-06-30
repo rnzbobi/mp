@@ -177,7 +177,10 @@ public class RegularVendingMachine {
         System.out.println("|7| 10 Pesos   |8| 5 Pesos   |9| 1 Pesos");
         System.out.println("|10| EXIT");
         System.out.print("[Enter] ");
-        i = Integer.parseInt(sc.nextLine());
+        do{
+            i = Integer.parseInt(sc.nextLine());
+        }while(i < 0 && i > 10);
+
         
         if (i == 10) {
             break;
@@ -270,7 +273,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
         }
-    } while (i != 10 && i < 0 && i >= 11);
+    } while (i != 10);
     
 }
     /**
