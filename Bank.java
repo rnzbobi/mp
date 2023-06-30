@@ -67,7 +67,7 @@ public class Bank {
      * @param quantity     the new quantity of the money denomination
      */
     public void updateMoney(int denomination, int quantity) {
-        Bank.money.put(denomination, quantity);
+        Bank.money.put(denomination, quantity); //updates the quantity for that specific denomination for the owner
     }
 
     /**
@@ -76,7 +76,7 @@ public class Bank {
      * @param money the new money data map with denominations and quantities
      */
     public void updateMoneyMap(HashMap<Integer, Integer> money) {
-        Bank.money = money;
+        Bank.money = money; //updates the whole denomination and the quantity for each denomination for the owner
     }
 
     /**
@@ -86,7 +86,7 @@ public class Bank {
      * @param quantity     the new quantity of the user-specific money denomination
      */
     public void updateUserMoney(int denomination, int quantity) {
-        Bank.usermoney.put(denomination, quantity);
+        Bank.usermoney.put(denomination, quantity); //updates the quantity for that specific denomination for the user
     }
 
     /**
@@ -95,7 +95,7 @@ public class Bank {
      * @param totalmoney the new total money in the bank
      */
     public void updateTotalMoney(int totalmoney) {
-        Bank.totalMoney = totalmoney;
+        Bank.totalMoney = totalmoney; //updates the total money of the owner
     }
 
     /**
@@ -104,6 +104,6 @@ public class Bank {
      * @param usertotalmoney the new total money of the user
      */
     public void updateUserTotalMoney(int usertotalmoney) {
-        Bank.userTotalMoney = usertotalmoney;
+        Bank.userTotalMoney = usertotalmoney; //updates the total money of the user
     }
 }

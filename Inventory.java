@@ -13,7 +13,7 @@ public class Inventory {
      * @param money a HashMap representing the amount of money available, with currency as keys and the corresponding amounts as values
      */
     public void updateMoney(HashMap<String, Integer> money) {
-        Inventory.money = money;
+        Inventory.money = money; //updates the whole denomination and the quantity for each denomination
     }
 
     /**

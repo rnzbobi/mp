@@ -25,7 +25,7 @@ public class VendingMachine {
         System.out.println("You chose Option 1: Hi Vending Machine [" + name + "]!");
 
         boolean isTypeValid = false;
-            for (String validType : types) {
+            for (String validType : types) { //for-each loop to check if type is correct
                 if (validType.equalsIgnoreCase(type)) {
                     isTypeValid = true;
                     break;
@@ -35,15 +35,16 @@ public class VendingMachine {
         if (isTypeValid){
             if (type.equalsIgnoreCase("Regular")) {
                 System.out.print("Creating a Regular vending machine ");
-                //Thread.sleep(1000);
+                Thread.sleep(1000);
                 System.out.print(". ");
-                //Thread.sleep(1000);
+                Thread.sleep(1000);
                 System.out.print(". ");
-                //Thread.sleep(1000);
+                Thread.sleep(1000);
                 System.out.print(". \n");
                      int total = 0, usertotal = 0;
                      System.out.println("===== YOUR BANK =====");
                      System.out.println("[Insert the number of Bills/Coins to your BANK]");
+                     // for-each loop to get the quantity for each denomination
                         for (int denomination : denominations) {
                             System.out.println(denomination + " Peso Bills/Coins [INSERT]");
                             int temp = Integer.parseInt(sc.nextLine());
@@ -55,16 +56,16 @@ public class VendingMachine {
                             bank = new Bank(money,usermoney,total,usertotal);
                             RegularVendingMachine regular = new RegularVendingMachine(name,slots,bank);
                             this.RegularVendingMachine = regular;
-                            //Thread.sleep(1500);
+                            Thread.sleep(1500);
                             RegularVendingMachine.displayStartingInventory();
-                            //Thread.sleep(1500);
+                            Thread.sleep(1500);
                             System.out.println("\n\n[VENDING MACHINE: ONLINE]");
                             RegularVendingMachine.displayAvailableItem();
 
                         } else if (type.equalsIgnoreCase("Special")) {
                             System.out.println("Creating a Special vending machine.");
-                            //Thread.sleep(2000);
-                            // Perform actions for a Special vending machine
+                            Thread.sleep(2000);
+                            //Perform actions for a Special vending machine
                         }
                     } else {
                         System.out.println("Invalid vending machine type.");
@@ -81,9 +82,9 @@ public class VendingMachine {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Welcome to Coffee Vending Machine [" + RegularVendingMachine.getName() + "]!");
-        //Thread.sleep(1500);
+        Thread.sleep(1500);
         System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
-        //Thread.sleep(1500);
+        Thread.sleep(1500);
         do{
             System.out.println("[1] Test Vending Features");
             System.out.println("[2] Maintenance Features");
@@ -94,12 +95,12 @@ public class VendingMachine {
             if(choice == 1){
                 do{
                     System.out.println("CURRENT BALANCE OF THE VENDING MACHINE [" + bank.getTotalMoney() + "]");
-                    //Thread.sleep(500);
+                    Thread.sleep(500);
                     System.out.println("CURRENT BALANCE OF THE USER [" + bank.getUserTotalMoney() + "]");
-                    //Thread.sleep(500);
+                    Thread.sleep(500);
                     System.out.println("These are all the available items:\n");
                     RegularVendingMachine.displayAvailableItem();
-                    //Thread.sleep(3000);
+                    Thread.sleep(3000);
                     System.out.println("\n\nWould you like to order an item? (Y/N): ");
                     userchoice = sc.nextLine();
                     if(userchoice.equalsIgnoreCase("Y")) {

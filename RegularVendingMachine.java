@@ -43,7 +43,7 @@ public class RegularVendingMachine {
         int price, total = 0, totalowner;
         HashMap<Ingredient, Integer> availableItems = inventory[1].getStocks();
 
-        for (Map.Entry<Ingredient, Integer> items : availableItems.entrySet()) {
+        for (Map.Entry<Ingredient, Integer> items : availableItems.entrySet()) { // for-each loop to iterate over all items
             Ingredient ingredient = items.getKey();
             int quantity = items.getValue();
             price = ingredient.getPrice();
@@ -85,9 +85,9 @@ public class RegularVendingMachine {
                     Thread.sleep(500);
                     System.out.print(". \n");
 
-                    found = true;
+                    found = true; //updates found to true if item is found
                     Log sale = new Log(ingredient.getName(), price, 1);
-                    Sales.add(sale);
+                    Sales.add(sale); //adds the sale to log
 
                     System.out.println("------------------------------");
                     System.out.println("         RECEIPT");
@@ -96,7 +96,7 @@ public class RegularVendingMachine {
                     System.out.println("Price: Php " + price);
                     System.out.println("Tendered: " + (total + price));
                     System.out.println("Change: " + total);
-                    for (int denomination : change.keySet()) {
+                    for (int denomination : change.keySet()) { //for-each loop to get the specified change
                         int numNotes = change.get(denomination);
                         if(numNotes != 0){
                             System.out.println("Change Denomination: " + denomination + ", Quantity: " + numNotes);
@@ -126,7 +126,7 @@ public class RegularVendingMachine {
                 }
                 System.out.println("------------------------------");
                 System.out.println("Thank you for your purchase!\n");
-                inventory[1].setStocks(slots);
+                inventory[1].setStocks(slots); //updates the ending inventory
                 return true;
             } else if (name.equalsIgnoreCase(ingredient.getName()) && price > bank.getUserTotalMoney()) {
                 // Item found but user does not have sufficient funds
@@ -149,7 +149,7 @@ public class RegularVendingMachine {
             }
         }
 
-        if (!found) {
+        if (!found) { //error message if item is invalid
             System.out.println("[ERROR] The item you have selected is invalid!");
             return false;
         }
@@ -188,6 +188,7 @@ public class RegularVendingMachine {
 
         switch (i) {
             case 1 -> {
+                //if the user inputted "1000"
                 i3 = bank.getMoney().get(1000) + i2;
                 i4 = bank.getUserMoney().get(1000) + i2;
                 bank.updateUserMoney(1000, i4);
@@ -197,6 +198,7 @@ public class RegularVendingMachine {
             }
 
             case 2 -> {
+                //if the user inputted "500"
                 i3 = bank.getMoney().get(500) + i2;
                 i4 = bank.getUserMoney().get(500) + i2;
                 bank.updateUserMoney(500, i4);
@@ -205,6 +207,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 3 -> {
+                //if the user inputted "200"
                 i3 = bank.getMoney().get(200) + i2;
                 i4 = bank.getUserMoney().get(200) + i2;
                 bank.updateUserMoney(200, i4);
@@ -213,6 +216,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 4 -> {
+                //if the user inputted "100"
                 i3 = bank.getMoney().get(100) + i2;
                 i4 = bank.getUserMoney().get(100) + i2;
                 bank.updateUserMoney(100, i4);
@@ -221,6 +225,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 5 -> {
+                //if the user inputted "50"
                 i3 = bank.getMoney().get(50) + i2;
                 i4 = bank.getUserMoney().get(50) + i2;
                 bank.updateUserMoney(50, i4);
@@ -229,6 +234,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 6 -> {
+                //if the user inputted "20"
                 i3 = bank.getMoney().get(20) + i2;
                 i4 = bank.getUserMoney().get(20) + i2;
                 bank.updateUserMoney(20, i4);
@@ -237,6 +243,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 7 -> {
+                //if the user inputted "10"
                 i3 = bank.getMoney().get(10) + i2;
                 i4 = bank.getUserMoney().get(10) + i2;
                 bank.updateUserMoney(10, i4);
@@ -245,6 +252,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 8 -> {
+                //if the user inputted "5"
                 i3 = bank.getMoney().get(5) + i2;
                 i4 = bank.getUserMoney().get(5) + i2;
                 bank.updateUserMoney(5, i4);
@@ -253,6 +261,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
             case 9 -> {
+                //if the user inputted "1"
                 i3 = bank.getMoney().get(1) + i2;
                 i4 = bank.getUserMoney().get(1) + i2;
                 bank.updateUserMoney(1, i4);
@@ -261,7 +270,7 @@ public class RegularVendingMachine {
                 bank.updateUserTotalMoney(usertotal);
             }
         }
-    } while (i != 10);
+    } while (i != 10 && i < 0 && i >= 11);
     
 }
     /**
@@ -371,7 +380,7 @@ public class RegularVendingMachine {
                     bank.updateTotalMoney(total);
                 }
             }
-        } while (i != 10);
+        } while (i != 10 && i < 0 && i >= 11);
     }
     /**
      * Displays the starting inventory of the vending machine.
@@ -381,6 +390,7 @@ public class RegularVendingMachine {
     public void displayStartingInventory() {
         System.out.println("=== Your Starting Inventory ===");
         HashMap<Ingredient, Integer> startingStocks = inventory[0].getStocks();
+        //for each item, the name and the quantity is displayed
         for (Map.Entry<Ingredient, Integer> entry : startingStocks.entrySet()) {
             Ingredient ingredient = entry.getKey();
             int quantity = entry.getValue();
@@ -395,6 +405,7 @@ public class RegularVendingMachine {
     public void displayEndingInventory() {
         HashMap<Ingredient, Integer> endingStocks = inventory[1].getStocks();
         System.out.println("=== Your Ending Inventory ===");
+        //for each item, the name and the quantity is displayed
         for (Map.Entry<Ingredient, Integer> entry : endingStocks.entrySet()) {
             Ingredient ingredient = entry.getKey();
             int quantity = entry.getValue();
@@ -411,6 +422,7 @@ public class RegularVendingMachine {
         int maxItemNameLength = 0;
     
         for (Ingredient item : slots.keySet()) {
+            //gets the length name of each object
             int itemNameLength = item.getName().length();
             if (itemNameLength > maxItemNameLength) {
             maxItemNameLength = itemNameLength;
@@ -420,6 +432,7 @@ public class RegularVendingMachine {
         int itemInfoWidth = maxItemNameLength + 25;
     
         for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
+            //gets the name, quantity, and price of each object
             Ingredient item = entry.getKey();
             int quantity = entry.getValue();
             String itemName = item.getName();
@@ -431,11 +444,13 @@ public class RegularVendingMachine {
             }
 
             if(quantity >= 1) {
+                //if the item is not out of stock
                 String itemInfo = "[" + quantity + "]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice);
                 String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
                 System.out.print(formattedItemInfo);
             }
             else {
+                //if the item is out of stock
                 String itemInfo = "[SOLD OUT]" + itemName + " | Price: Php " + decimalFormat.format(itemPrice);
                 String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
                 System.out.print(formattedItemInfo);
@@ -471,12 +486,14 @@ public class RegularVendingMachine {
 
             switch (choice) {
                 case 1:
+                    //if the user wishes to choose replenish money option
                     found = false;
                     displayAvailableItem();
                     System.out.print("\nEnter the item that you wish to replenish: ");
                     itemname = sc.nextLine();
 
                     for (Map.Entry<Ingredient, Integer> items : availableitems.entrySet()) {
+                        //locates the item that wishes to replenish
                         Ingredient ingredient = items.getKey();
                         int quantity = items.getValue();
                         int price = ingredient.getPrice();
@@ -489,16 +506,19 @@ public class RegularVendingMachine {
                         }
                     }
                     if(!found){
+                        //if item does not exist
                         System.out.println("[ERROR] Item does not exist");
                     }
                     break;
                 case 2:
+                    //if the user wishes to change the price
                     found = false;
                     displayAvailableItem();
                     System.out.print("\nEnter the item that you wish to change price: ");
                     itemname = sc.nextLine();
 
                     for (Map.Entry<Ingredient, Integer> items : availableitems.entrySet()) {
+                        //locates the item that wishes to replenish
                         Ingredient ingredient = items.getKey();
                         int quantity = items.getValue();
                         int price = ingredient.getPrice();
@@ -510,6 +530,7 @@ public class RegularVendingMachine {
                         }
                     }
                     if(!found){
+                        //if the item does not exist
                         System.out.println("[ERROR] Item does not exist");
                     }
                     break;
@@ -527,6 +548,7 @@ public class RegularVendingMachine {
                     HashMap<Integer, Integer> money = bank.getMoney();
                     i = 1;
                     for (int denomination : denominations) {
+                        //displays the quantity of each denomination of the owner's current balance
                         System.out.println("(" + i + ") " + "[" + money.get(denomination) + " - " + denomination + "]");
                         i++;
                     }
@@ -537,6 +559,7 @@ public class RegularVendingMachine {
                     int updatedTotal = 0;
                     int newQuantity = 0;
                     while (billIndex < 0 || billIndex > denominations.length) {
+                        //enter a number to collect between from 1- denomination's quantity
                         System.out.println("Enter the index of the bill/coin (1 - " + (denominations.length) + "): ");
                         billIndex = Integer.parseInt(sc.nextLine());
                     }
@@ -545,12 +568,14 @@ public class RegularVendingMachine {
 
                     int currentQuantity = bank.getMoney().get(chosenDenomination);
                     if (currentQuantity == 0) {
+                        //if the quantity for a specific denomination is 0
                         System.out.println("No more bills/coins available.");
                     } else {
                         System.out.println("Enter the quantity to collect (1 - " + currentQuantity + "): ");
 
                         int quantityToCollect = -1;
                         while (quantityToCollect < 1 || quantityToCollect > currentQuantity) {
+                            //collects the quantity
                             quantityToCollect = Integer.parseInt(sc.nextLine());
                         }
 
@@ -608,6 +633,7 @@ public class RegularVendingMachine {
         Map<String, Integer> itemPrices = new HashMap<>();
 
         for (Log log : Sales) {
+            //produces and displays the sales' name and price that are sold
             System.out.println("Name: " + log.getName());
             System.out.println("Price: " + log.getPrice());
             System.out.println("==========================");
@@ -623,7 +649,7 @@ public class RegularVendingMachine {
             int itemQuantity = itemQuantities.get(itemName);
             int itemPrice = itemPrices.getOrDefault(itemName, 0);
             int itemTotalPrice = itemQuantity * itemPrice;
-
+            //gets the total quantity of each item that were sold
             System.out.println(itemName + " Quantity Sold: " + itemQuantity);
             System.out.println(itemName + " Total Price: " + itemTotalPrice);
             System.out.println("==========================");
