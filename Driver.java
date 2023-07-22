@@ -11,9 +11,10 @@ public class Driver {
         int choice;
         do {
             System.out.println("Choose an option: hah");
-            System.out.println("1. Create a Vending Machine");
-            System.out.println("2. Test Vending Machine");
-            System.out.println("3. Exit");
+            System.out.println("1. Create a Pre-Defined Vending Machine");
+			System.out.println("2. Create your own Vending Machine");
+			System.out.println("3. Test Vending Machine");
+            System.out.println("4. Exit");
             System.out.println("Enter your choice: ");
 
             choice = Integer.parseInt(sc.nextLine());
@@ -65,7 +66,27 @@ public class Driver {
                     break;
 
                 case 2:
-                    System.out.println("You chose Option 2: Test Vending Machine");
+
+				    if (vendingMachineCreated) {
+                        System.out.println("Vending machine has already been created!");
+                        break;
+                    }
+					
+					System.out.print("Enter the name of your Coffee Vending Machine: ");
+                    name = sc.nextLine();
+                    do {
+                        System.out.print("Type of Coffee Vending Machine [Regular] | [Special]: ");
+                        type = sc.nextLine();
+                    } while (!(type.equalsIgnoreCase("Regular")) && !(type.equalsIgnoreCase("Special")));
+
+                    System.out.print("How many items do you want for all?:");
+                    while (!sc.hasNextInt() || (number = sc.nextInt()) < 10) {
+                        System.out.println("Invalid input. Please enter a number.");
+                    }
+                    sc.nextLine();
+					
+				case 3:
+				    System.out.println("You chose Option 2: Test Vending Machine");
                     if (vendingMachineCreated) {
                         vendingmachine.testVendingMachine();
                         System.out.println("\n");
@@ -73,8 +94,8 @@ public class Driver {
                         System.out.println("\n[ERROR] You don't have a vending machine to test!");
                     }
                     break;
-
-                case 3:
+					
+                case 4:
                     System.out.print("\nExiting Program");
                     Thread.sleep(1000);
                     System.out.print(". ");
@@ -88,7 +109,7 @@ public class Driver {
                 default:
                     System.out.println("\nInvalid choice. Please try again.");
             }
-        } while (choice != 3);
+        } while (choice != 4);
         sc.close();
     }
 }
