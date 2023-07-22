@@ -81,7 +81,7 @@ public class VendingMachine {
         int choice;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to Coffee Vending Machine [" + RegularVendingMachine.getName() + "]!");
+        System.out.println("Welcome to Vending Machine [" + RegularVendingMachine.getName() + "]!");
         Thread.sleep(1500);
         System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
         Thread.sleep(1500);
