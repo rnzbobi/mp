@@ -139,6 +139,7 @@ public class Driver {
                 default:
                     System.out.println("\nInvalid choice. Please try again.");
             }
+            
         } while (choice != 4);
         sc.close();
     }
