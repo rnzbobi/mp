@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class RegularVendingMachine {
     private final String name;
-    private final String type = "Regular";
+    private String type = "Regular";
     private static HashMap<Ingredient, Integer> slots;
     private Bank bank;
     private Inventory[] inventory;

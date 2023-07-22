@@ -10,8 +10,8 @@ public class Driver {
         boolean vendingMachineCreated = false;
         int choice;
         do {
-            System.out.println("Choose an option: hah");
-            System.out.println("1. Create a Pre-Defined Vending Machine");
+            System.out.println("Choose an option: ");
+            System.out.println("1. Coffee Vending Machine");
 			System.out.println("2. Create your own Vending Machine");
 			System.out.println("3. Test Vending Machine");
             System.out.println("4. Exit");
@@ -66,27 +66,57 @@ public class Driver {
                     break;
 
                 case 2:
-
-				    if (vendingMachineCreated) {
+                    if (vendingMachineCreated) {
                         System.out.println("Vending machine has already been created!");
                         break;
                     }
-					
-					System.out.print("Enter the name of your Coffee Vending Machine: ");
+
+                    System.out.print("Enter the name of your Vending Machine: ");
                     name = sc.nextLine();
                     do {
-                        System.out.print("Type of Coffee Vending Machine [Regular] | [Special]: ");
+                        System.out.print("Type of Vending Machine [Regular] | [Special]: ");
                         type = sc.nextLine();
                     } while (!(type.equalsIgnoreCase("Regular")) && !(type.equalsIgnoreCase("Special")));
 
-                    System.out.print("How many items do you want for all?:");
-                    while (!sc.hasNextInt() || (number = sc.nextInt()) < 10) {
-                        System.out.println("Invalid input. Please enter a number.");
+                    System.out.print("How many slots do you want for the vending machine?: ");
+                    while (!sc.hasNextInt() || (number = sc.nextInt()) < 8) {
+                        System.out.println("Invalid input. Please enter a number greater than or equal to 8.");
+                        sc.nextLine(); // Clear the input buffer
                     }
                     sc.nextLine();
+
+                    HashMap<Ingredient, Integer> customSlots = new HashMap<>();
+
+                    for (int i = 1; i <= number; i++) {
+                        System.out.print("Enter the name of ingredient for slot " + i + ": ");
+                        String ingredientName = sc.nextLine();
+
+                        System.out.print("Enter the price for ingredient " + ingredientName + ": ");
+                        int ingredientPrice = sc.nextInt();
+                        sc.nextLine(); // Clear the input buffer
+
+                        System.out.print("Enter the number of calories for ingredient " + ingredientName + ": ");
+                        int ingredientCalories = sc.nextInt();
+                        sc.nextLine(); // Clear the input buffer
+
+                        System.out.print("Enter the quantity for ingredient " + ingredientName + ": ");
+                        int ingredientQuantity;
+                        while (!sc.hasNextInt() || (ingredientQuantity = sc.nextInt()) < 10) {
+                            System.out.println("Invalid input. Please enter a number greater than or equal to 10.");
+                            sc.nextLine(); // Clear the input buffer
+                        }
+                        sc.nextLine();
+
+                        Ingredient ingredient = new Ingredient(ingredientName, ingredientPrice, ingredientCalories);
+                        customSlots.put(ingredient, ingredientQuantity);
+                    }
+
+                    vendingmachine.createVendingMachine(name, type, customSlots);
+                    vendingMachineCreated = true;
+                    break;
 					
 				case 3:
-				    System.out.println("You chose Option 2: Test Vending Machine");
+				    System.out.println("You chose Option 3: Test Vending Machine");
                     if (vendingMachineCreated) {
                         vendingmachine.testVendingMachine();
                         System.out.println("\n");
