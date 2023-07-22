@@ -63,7 +63,6 @@ public class RegularVendingMachine {
                 Map<Integer, Integer> change = vendingMachine.dispenseChange(amountPaid, amountToPay);
                 if (change != null) {
                     // Sufficient change available
-
                     // Update quantities and money
                     quantity--;
                     slots.put(ingredient, quantity);
@@ -175,12 +174,15 @@ public class RegularVendingMachine {
         System.out.println("|1| 1000 Pesos |2| 500 Pesos |3| 200 Pesos");
         System.out.println("|4| 100 Pesos  |5| 50 Pesos  |6| 20 Pesos");
         System.out.println("|7| 10 Pesos   |8| 5 Pesos   |9| 1 Pesos");
-        System.out.println("|10| EXIT");
+        System.out.println("|10| [EXIT]");
         System.out.print("[Enter] ");
+
         do{
             i = Integer.parseInt(sc.nextLine());
-        }while(i < 0 && i > 10);
-
+            if(i < 0 || i > 10){
+                System.out.print("[Error Insert Valid Number] ");
+            }
+        }while(i < 0 || i > 10);
         
         if (i == 10) {
             break;
@@ -274,7 +276,6 @@ public class RegularVendingMachine {
             }
         }
     } while (i != 10);
-    
 }
     /**
      * Replenishes the money in the vending machine.
@@ -300,7 +301,13 @@ public class RegularVendingMachine {
             System.out.println("|7| 10 Pesos   |8| 5 Pesos   |9| 1 Pesos");
             System.out.println("|10| EXIT");
             System.out.print("[Enter] ");
-            i = Integer.parseInt(sc.nextLine());
+
+            do{
+                i = Integer.parseInt(sc.nextLine());
+                if(i < 0 || i > 10){
+                    System.out.print("[Error Insert Valid Number] ");
+                }
+            }while(i < 0 || i > 10);
 
             if (i == 10) {
                 break;
@@ -383,7 +390,7 @@ public class RegularVendingMachine {
                     bank.updateTotalMoney(total);
                 }
             }
-        } while (i != 10 && i < 0 && i >= 11);
+        } while (i != 10);
     }
     /**
      * Displays the starting inventory of the vending machine.
