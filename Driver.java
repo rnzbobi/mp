@@ -86,7 +86,7 @@ public class Driver {
                     sc.nextLine();
 
                     HashMap<Ingredient, Integer> customSlots = new HashMap<>();
-
+					
                     for (int i = 1; i <= number; i++) {
                         System.out.print("Enter the name of ingredient for slot " + i + ": ");
                         String ingredientName = sc.nextLine();
