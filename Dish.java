@@ -7,7 +7,7 @@ public class Dish {
     private final String name;
     private final int price;
     private final int calories;
-    private final ArrayList<Ingredient> ingredients;
+    private final HashMap<Ingredient, Integer> ingredients;
 
     /**
      * Constructs a new Dish object with the specified name, price, calories, and ingredients.
@@ -17,7 +17,7 @@ public class Dish {
      * @param calories    the calorie count of the dish
      * @param ingredients the list of ingredients in the dish
      */
-    public Dish(String name, int price, int calories, ArrayList<Ingredient> ingredients){
+    public Dish(String name, int price, int calories, HashMap<Ingredient, Integer> ingredients){
         this.name = name;
         this.price = price;
         this.calories = calories;
@@ -56,7 +56,7 @@ public class Dish {
      *
      * @return the list of ingredients in the dish
      */
-    public ArrayList<Ingredient> getIngredients() {
+    public HashMap<Ingredient, Integer> getIngredients() {
         return ingredients;
     }
 }

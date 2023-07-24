@@ -1,32 +1,12 @@
 import java.util.*;
 
-public class SpecialVendingMachine {
-    private HashMap<String, Dish> choices;
-    private static HashMap<String, Integer> money;
-    private HashMap<String, Integer> transactions;
-    private HashMap<Ingredient,Integer> slots;
-    private Inventory[] inventory;
+public class SpecialVendingMachine extends RegularVendingMachine{
+    private Dish dish;
 
-    public boolean insertMoney(int m){
-        return true;
+	public SpecialVendingMachine(String name, HashMap<Ingredient,Integer> slots2, Bank bank){
+        super(name,slots2,bank);
     }
-
-
-    public void displayInventory() {
-        System.out.println("This is the starting inventory: ");
-        System.out.println(inventory[1].getStocks());
-        System.out.println("\nThis is the ending inventory: ");
-        System.out.println(inventory[2].getStocks());
-    }
-
-    public void maintenance() {
-
-    }
-
-    public void printTransaction() {
-
-    }
-
+	
     public void createDish(String name, ArrayList<Ingredient> ingredients) {
 
     }

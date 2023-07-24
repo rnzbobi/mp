@@ -62,14 +62,39 @@ public class VendingMachine {
                             System.out.println("\n\n[VENDING MACHINE: ONLINE]");
                             RegularVendingMachine.displayAvailableItem();
 
-                        } else if (type.equalsIgnoreCase("Special")) {
-                            System.out.println("Creating a Special vending machine.");
-                            Thread.sleep(2000);
-                            //Perform actions for a Special vending machine
-                        }
-                    } else {
-                        System.out.println("Invalid vending machine type.");
-                    }
+            } 
+			else if (type.equalsIgnoreCase("Special")) {
+                System.out.println("Creating a Special vending machine ");
+                Thread.sleep(1000);
+				System.out.print(". ");
+				Thread.sleep(1000);
+				System.out.print(". ");
+				Thread.sleep(1000);
+				System.out.print(". \n");
+					int total = 0, usertotal = 0;
+					System.out.println("===== YOUR BANK =====");
+					System.out.println("[Insert the number of Bills/Coins to your BANK]");
+					// for-each loop to get the quantity for each denomination
+						for (int denomination : denominations) {
+							System.out.println(denomination + " Peso Bills/Coins [INSERT]");
+							int temp = Integer.parseInt(sc.nextLine());
+							money.put(denomination, temp);
+							usermoney.put(denomination,0);
+							total += money.get(denomination) * denomination;
+							}
+							System.out.println("\nTotal Money Inserted for Change is [" + total + "]");
+							bank = new Bank(money,usermoney,total,usertotal);
+							SpecialVendingMachine special = new SpecialVendingMachine(name,slots,bank);
+                            this.SpecialVendingMachine = special;
+                            Thread.sleep(1500);
+                            SpecialVendingMachine.displayStartingInventory();
+                            Thread.sleep(1500);
+                            System.out.println("\n\n[VENDING MACHINE: ONLINE]");
+                            SpecialVendingMachine.displayAvailableItem();
+			}
+        } else {
+            System.out.println("Invalid vending machine type.");
+        }
     }
     /**
      * Tests the functionality of the vending machine.
@@ -80,7 +105,8 @@ public class VendingMachine {
         String itemname, userchoice, userchoice2;
         int choice;
         Scanner sc = new Scanner(System.in);
-
+		
+		
         System.out.println("Welcome to Vending Machine [" + RegularVendingMachine.getName() + "]!");
         Thread.sleep(1500);
         System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
