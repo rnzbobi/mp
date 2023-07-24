@@ -90,7 +90,7 @@ public class VendingMachine {
                             SpecialVendingMachine.displayStartingInventory();
                             Thread.sleep(1500);
                             System.out.println("\n\n[VENDING MACHINE: ONLINE]");
-                            SpecialVendingMachine.displayAvailableItem();
+                            SpecialVendingMachine.displaySpecialAvailableItem();
 			}
         } else {
             System.out.println("Invalid vending machine type.");
@@ -137,7 +137,7 @@ public class VendingMachine {
                         RegularVendingMachine.displayAvailableItem();
                     }
                     else if (SpecialVendingMachine != null) {
-                        SpecialVendingMachine.displayAvailableItem();
+                        SpecialVendingMachine.displaySpecialAvailableItem();
                     }
                     Thread.sleep(3000);
                     System.out.println("\n\nWould you like to order an item? (Y/N): ");
@@ -171,7 +171,7 @@ public class VendingMachine {
                                 RegularVendingMachine.displayAvailableItem();
                             }
                             else if (SpecialVendingMachine !=  null){
-                                SpecialVendingMachine.displayAvailableItem();
+                                SpecialVendingMachine.displaySpecialAvailableItem();
                             }
                             System.out.println("\n[A] Continue to Select Item");
                             System.out.println("[B] Return Money");
@@ -186,7 +186,7 @@ public class VendingMachine {
                                         itemSelected = RegularVendingMachine.selectItem(itemname);
                                     }
                                     else if (SpecialVendingMachine !=  null){
-                                        itemSelected = SpecialVendingMachine.selectItem(itemname);
+                                        itemSelected = SpecialVendingMachine.selectDish(itemname);
                                     }
                                 }
                             } else {

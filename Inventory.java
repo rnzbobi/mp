@@ -5,7 +5,6 @@ import java.util.*;
  */
 public class Inventory {
     private HashMap<Ingredient, Integer> slots;
-    private HashMap<Dish, Integer> slotsdish;
     private ArrayList<Dish> dishList;
     private static HashMap<String, Integer> money;
 
@@ -27,6 +26,10 @@ public class Inventory {
         return slots;
     }
 
+    public ArrayList<Dish> getDishStocks() {
+        return dishList;
+    }
+
     /**
      * Retrieves the amount of money available in the inventory.
      *
@@ -41,8 +44,11 @@ public class Inventory {
      *
      * @param slots a HashMap representing the ingredients as keys and the corresponding quantities as values
      */
-    public void setStocks(HashMap<Ingredient, Integer> slots, ArrayList<Dish> dishes) {
+    public void setStocks(HashMap<Ingredient, Integer> slots) {
         this.slots = slots;
-        this.dishList = dishes;
+    }
+
+    public void setStocksDish(ArrayList<Dish> dishList) {
+        this.dishList = dishList;
     }
 }

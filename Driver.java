@@ -88,11 +88,11 @@ public class Driver {
                     slots.put(Cinnamon, number);
                     slots.put(Espresso, number);
 
-                    Dish CaramelMacchiato = new Dish("Caramel Macchiato", number, 338, 210, CM);
-                    Dish WhiteChocolateMocha = new Dish("White Chocolate Mocha", number, 634, 210, WCM);
-                    Dish CaffeAmericano = new Dish("Caffe Americano", number, 17, 165, CA);
-                    Dish CaffeLatte = new Dish("Caffe Latte", number, 457, 190, CL);
-                    Dish Cappucino = new Dish("Cappucino", number, 193, 165, CAP);
+                    Dish CaramelMacchiato = new Dish("Caramel Macchiato", number, 210, 338, CM);
+                    Dish WhiteChocolateMocha = new Dish("White Chocolate Mocha", number, 210, 634, WCM);
+                    Dish CaffeAmericano = new Dish("Caffe Americano", number, 165, 17, CA);
+                    Dish CaffeLatte = new Dish("Caffe Latte", number, 190, 457, CL);
+                    Dish Cappucino = new Dish("Cappucino", number, 165, 193, CAP);
 
                     ArrayList<Dish> dishList = new ArrayList<Dish>();
                     dishList.add(CaramelMacchiato);

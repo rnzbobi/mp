@@ -5,13 +5,13 @@ import java.util.*;
  * It allows users to select items, insert money, and perform various operations.
  */
 public class RegularVendingMachine {
-    private final String name;
-    private final String type;
-    private static HashMap<Ingredient, Integer> slots;
-    private Bank bank;
-    private Inventory[] inventory;
-    private ArrayList<Log> Sales;
-    private final static int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
+    protected final String name;
+    protected final String type;
+    protected static HashMap<Ingredient, Integer> slots;
+    protected Bank bank;
+    protected Inventory[] inventory;
+    protected ArrayList<Log> Sales;
+    protected final static int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
     Scanner sc = new Scanner(System.in);
     /**
      * Constructs a RegularVendingMachine object with the given name, slots, and bank.
@@ -400,8 +400,8 @@ public class RegularVendingMachine {
      */
     public void displayStartingInventory() {
         System.out.println("=== Your Starting Inventory ===");
-        HashMap<Ingredient, Integer> startingStocks = inventory[0].getStocks();
-        //for each item, the name and the quantity is displayed
+        HashMap<Ingredient, Integer> startingStocks = getStartingInventory();
+        // for each item, the name and the quantity is displayed
         for (Map.Entry<Ingredient, Integer> entry : startingStocks.entrySet()) {
             Ingredient ingredient = entry.getKey();
             int quantity = entry.getValue();
@@ -677,11 +677,27 @@ public class RegularVendingMachine {
     protected Map<Ingredient, Integer> getSlots() {
         return slots;
     }
+    public HashMap<Ingredient, Integer> getStartingInventory() {
+        return inventory[0].getStocks();
+    }
+
+    public HashMap<Ingredient, Integer> getEndingInventory() {
+        return inventory[1].getStocks();
+    }
     /**
      * Retrieves the type of the vending machine.
      * @return the type of the vending machine
      */
     public String getType(){
         return type;
+    }
+
+    public void setStocksDish(ArrayList<Dish>dishList){
+        inventory[0].setStocksDish(new ArrayList<>(dishList));
+        inventory[1].setStocksDish(dishList);
+    }
+
+    public Inventory[] getInventory() {
+        return inventory;
     }
 }
