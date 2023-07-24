@@ -5,6 +5,7 @@ import java.util.*;
  */
 public class Dish {
     private final String name;
+    private final int quantity;
     private final int price;
     private final int calories;
     private final HashMap<Ingredient, Integer> ingredients;
@@ -17,8 +18,9 @@ public class Dish {
      * @param calories    the calorie count of the dish
      * @param ingredients the list of ingredients in the dish
      */
-    public Dish(String name, int price, int calories, HashMap<Ingredient, Integer> ingredients){
+    public Dish(String name, int quantity, int price, int calories, HashMap<Ingredient, Integer> ingredients){
         this.name = name;
+        this.quantity = quantity;
         this.price = price;
         this.calories = calories;
         this.ingredients = ingredients;
@@ -31,6 +33,15 @@ public class Dish {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns the quantity of the dish.
+     *
+     * @return the quantity of the dish
+     */
+    public int getQuantity() {
+        return quantity;
     }
 
     /**

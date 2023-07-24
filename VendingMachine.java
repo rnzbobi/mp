@@ -19,7 +19,7 @@ public class VendingMachine {
      * @param slots the inventory slots of the vending machine
      * @throws InterruptedException if the thread is interrupted while sleeping
      */
-    public void createVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots) throws InterruptedException {
+    public void createVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots, ArrayList<Dish> dishList) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("You chose Option 1: Hi Vending Machine [" + name + "]!");
@@ -54,7 +54,7 @@ public class VendingMachine {
                         }
                             System.out.println("\nTotal Money Inserted for Change is [" + total + "]");
                             bank = new Bank(money,usermoney,total,usertotal);
-                            RegularVendingMachine regular = new RegularVendingMachine(name,slots,bank);
+                            RegularVendingMachine regular = new RegularVendingMachine(name,"Regular",slots,bank);
                             this.RegularVendingMachine = regular;
                             Thread.sleep(1500);
                             RegularVendingMachine.displayStartingInventory();
@@ -84,7 +84,7 @@ public class VendingMachine {
 							}
 							System.out.println("\nTotal Money Inserted for Change is [" + total + "]");
 							bank = new Bank(money,usermoney,total,usertotal);
-							SpecialVendingMachine special = new SpecialVendingMachine(name,slots,bank);
+							SpecialVendingMachine special = new SpecialVendingMachine(name,"Special",slots,bank,dishList);
                             this.SpecialVendingMachine = special;
                             Thread.sleep(1500);
                             SpecialVendingMachine.displayStartingInventory();
@@ -133,26 +133,46 @@ public class VendingMachine {
                     System.out.println("CURRENT BALANCE OF THE USER [" + bank.getUserTotalMoney() + "]");
                     Thread.sleep(500);
                     System.out.println("These are all the available items:\n");
-                    RegularVendingMachine.displayAvailableItem();
+                    if (RegularVendingMachine != null) {
+                        RegularVendingMachine.displayAvailableItem();
+                    }
+                    else if (SpecialVendingMachine != null) {
+                        SpecialVendingMachine.displayAvailableItem();
+                    }
                     Thread.sleep(3000);
                     System.out.println("\n\nWould you like to order an item? (Y/N): ");
                     userchoice = sc.nextLine();
                     if(userchoice.equalsIgnoreCase("Y")) {
                         System.out.println("\nPlease insert money: ");
-                        RegularVendingMachine.insertMoney();
+                        if (RegularVendingMachine != null) {
+                            RegularVendingMachine.insertMoney();
+                        }
+                        else if (SpecialVendingMachine != null) {
+                            SpecialVendingMachine.insertMoney();
+                        }
                         System.out.println("Your current balance is :[" + bank.getUserTotalMoney() + "]");
                         if (bank.getUserTotalMoney() <= 0) {
                             System.out.println("You do not have enough balance!");
                             System.out.print("Would you like to insert money? (Y/N): ");
                             userchoice = sc.nextLine();
                             if (userchoice.equalsIgnoreCase("Y")) {
-                                RegularVendingMachine.insertMoney();
+                                if(RegularVendingMachine != null) {
+                                    RegularVendingMachine.insertMoney();
+                                }
+                                else if(SpecialVendingMachine !=  null){
+                                    SpecialVendingMachine.insertMoney();
+                                }
                             } else {
                                 System.out.println("Exiting Vending Machine");
                                 return;
                             }
                         } else {
-                            RegularVendingMachine.displayAvailableItem();
+                            if(RegularVendingMachine != null) {
+                                RegularVendingMachine.displayAvailableItem();
+                            }
+                            else if (SpecialVendingMachine !=  null){
+                                SpecialVendingMachine.displayAvailableItem();
+                            }
                             System.out.println("\n[A] Continue to Select Item");
                             System.out.println("[B] Return Money");
                             System.out.print("Select an option: ");
@@ -162,7 +182,12 @@ public class VendingMachine {
                                 while (!itemSelected) {
                                     System.out.print("\nPlease select an item from the choices above: ");
                                     itemname = sc.nextLine();
-                                    itemSelected = RegularVendingMachine.selectItem(itemname);
+                                    if(RegularVendingMachine != null) {
+                                        itemSelected = RegularVendingMachine.selectItem(itemname);
+                                    }
+                                    else if (SpecialVendingMachine !=  null){
+                                        itemSelected = SpecialVendingMachine.selectItem(itemname);
+                                    }
                                 }
                             } else {
                                 bank.updateUserMoney(1000, 0);
@@ -183,7 +208,12 @@ public class VendingMachine {
                 }while(!(userchoice.equalsIgnoreCase("N") || userchoice.equalsIgnoreCase("B")));
             }
             else if(choice == 2){
-                RegularVendingMachine.maintenance();
+                if(RegularVendingMachine != null) {
+                    RegularVendingMachine.maintenance();
+                }
+                else if (SpecialVendingMachine !=  null){
+                    SpecialVendingMachine.maintenance();
+                }
             }
             else if(choice == 3){
                 return;

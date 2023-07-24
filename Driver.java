@@ -37,6 +37,33 @@ public class Driver {
                     Ingredient Cinnamon = new Ingredient("Cinnamon", 189, 19);
                     Ingredient Espresso = new Ingredient("Espresso", 349, 3);
 
+                    HashMap<Ingredient, Integer> CM = new HashMap<>();
+                    CM.put(EspressoRoast,1);
+                    CM.put(Milk,1);
+                    CM.put(VanillaSyrup,2);
+                    CM.put(CaramelSyrup,1);
+
+                    HashMap<Ingredient, Integer> WCM = new HashMap<>();
+                    WCM.put(EspressoRoast,1);
+                    WCM.put(ChocolateChips,3);
+                    WCM.put(Milk,1);
+                    WCM.put(WhippedCream,1);
+
+                    HashMap<Ingredient, Integer> CA = new HashMap<>();
+                    CA.put(HotWater,1);
+                    CA.put(EspressoRoast,1);
+
+                    HashMap<Ingredient, Integer> CL = new HashMap<>();
+                    CL.put(EspressoRoast,1);
+                    CL.put(Milk,1);
+                    CL.put(MilkWhisk,1);
+                    CL.put(VanillaSyrup,2);
+
+                    HashMap<Ingredient, Integer> CAP = new HashMap<>();
+                    CAP.put(Espresso,2);
+                    CAP.put(Milk,1);
+                    CAP.put(Cinnamon,2);
+
                     System.out.print("Enter the name of your Coffee Vending Machine: ");
                     name = sc.nextLine();
                     do {
@@ -61,7 +88,20 @@ public class Driver {
                     slots.put(Cinnamon, number);
                     slots.put(Espresso, number);
 
-                    vendingmachine.createVendingMachine(name, type, slots);
+                    Dish CaramelMacchiato = new Dish("Caramel Macchiato", number, 338, 210, CM);
+                    Dish WhiteChocolateMocha = new Dish("White Chocolate Mocha", number, 634, 210, WCM);
+                    Dish CaffeAmericano = new Dish("Caffe Americano", number, 17, 165, CA);
+                    Dish CaffeLatte = new Dish("Caffe Latte", number, 457, 190, CL);
+                    Dish Cappucino = new Dish("Cappucino", number, 193, 165, CAP);
+
+                    ArrayList<Dish> dishList = new ArrayList<Dish>();
+                    dishList.add(CaramelMacchiato);
+                    dishList.add(WhiteChocolateMocha);
+                    dishList.add(CaffeAmericano);
+                    dishList.add(CaffeLatte);
+                    dishList.add(Cappucino);
+
+                    vendingmachine.createVendingMachine(name, type, slots, dishList);
                     vendingMachineCreated = true;
                     break;
 
@@ -110,8 +150,8 @@ public class Driver {
                         Ingredient ingredient = new Ingredient(ingredientName, ingredientPrice, ingredientCalories);
                         customSlots.put(ingredient, ingredientQuantity);
                     }
-
-                    vendingmachine.createVendingMachine(name, type, customSlots);
+                    ArrayList<Dish> dishList2 = new ArrayList<Dish>();
+                    vendingmachine.createVendingMachine(name, type, customSlots, dishList2);
                     vendingMachineCreated = true;
                     break;
 					

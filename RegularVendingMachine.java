@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class RegularVendingMachine {
     private final String name;
-    private String type = "Regular";
+    private final String type;
     private static HashMap<Ingredient, Integer> slots;
     private Bank bank;
     private Inventory[] inventory;
@@ -20,9 +20,10 @@ public class RegularVendingMachine {
      * @param slots2 the available slots in the vending machine
      * @param bank   the bank associated with the vending machine
      */
-    public RegularVendingMachine(String name, HashMap<Ingredient,Integer> slots2, Bank bank){
+    public RegularVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots2, Bank bank){
         this.name = name;
         this.bank = bank;
+        this.type = type;
         RegularVendingMachine.slots = slots2;
         this.inventory = new Inventory[2];
         inventory[0] = new Inventory();
@@ -430,17 +431,15 @@ public class RegularVendingMachine {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         int i = 1;
         int maxItemNameLength = 0;
-    
+
         for (Ingredient item : slots.keySet()) {
             //gets the length name of each object
             int itemNameLength = item.getName().length();
-            if (itemNameLength > maxItemNameLength) {
-            maxItemNameLength = itemNameLength;
-            }
+            if (itemNameLength > maxItemNameLength)
+                    maxItemNameLength = itemNameLength;
         }
-    
         int itemInfoWidth = maxItemNameLength + 25;
-    
+
         for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
             //gets the name, quantity, and price of each object
             Ingredient item = entry.getKey();
@@ -448,7 +447,7 @@ public class RegularVendingMachine {
             String itemName = item.getName();
             int itemPrice = item.getPrice();
             i++;
-        
+
             if (i % 2 == 0) {
                 System.out.println("\n");
             }
@@ -673,6 +672,10 @@ public class RegularVendingMachine {
      */
     public String getName(){
         return name;
+    }
+
+    protected Map<Ingredient, Integer> getSlots() {
+        return slots;
     }
     /**
      * Retrieves the type of the vending machine.
