@@ -106,11 +106,19 @@ public class VendingMachine {
         int choice;
         Scanner sc = new Scanner(System.in);
 		
-		
-        System.out.println("Welcome to Vending Machine [" + RegularVendingMachine.getName() + "]!");
-        Thread.sleep(1500);
-        System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
-        Thread.sleep(1500);
+		if(RegularVendingMachine != null) {
+            System.out.println("Welcome to Vending Machine [" + RegularVendingMachine.getName() + "]!");
+            Thread.sleep(1500);
+            System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
+            Thread.sleep(1500);
+        }
+        else if (SpecialVendingMachine != null) {
+            System.out.println("Welcome to Vending Machine [" + SpecialVendingMachine.getName() + "]!");
+            Thread.sleep(1500);
+            System.out.println("This is a [" + SpecialVendingMachine.getType() + "] type of vending machine\n");
+            Thread.sleep(1500);
+        }
+
         do{
             System.out.println("[1] Test Vending Features");
             System.out.println("[2] Maintenance Features");
