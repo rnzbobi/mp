@@ -28,6 +28,23 @@ public class SpecialVendingMachine extends RegularVendingMachine{
                 total = bank.getUserTotalMoney() - price;
                 totalowner = bank.getTotalMoney() + price;
 
+                // Decrement the quantities of ingredients used in the dish
+                for (Map.Entry<Ingredient, Integer> entry : dish.getIngredients().entrySet()) {
+                    Ingredient dishIngredient = entry.getKey();
+                    int dishIngredientQuantity = entry.getValue();
+
+                    for (Map.Entry<Ingredient, Integer> slotEntry : slots.entrySet()) {
+                        Ingredient slotIngredient = slotEntry.getKey();
+                        int slotIngredientQuantity = slotEntry.getValue();
+
+                        if (slotIngredient.getName().equalsIgnoreCase(dishIngredient.getName())) {
+                            int remainingQuantity = slotIngredientQuantity - dishIngredientQuantity;
+                            slots.put(slotIngredient, remainingQuantity);
+                            break;
+                        }
+                    }
+                }
+
                 // Calculate change using the VendingMachine class
                 VendingMachine vendingMachine = new VendingMachine();
                 int amountPaid = total + price;
@@ -237,8 +254,8 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         boolean soldout = false;
         int maxItemNameLength = 0;
 
+        // Get the maximum length of the dish name to format the output nicely
         for (Dish dish : dishList) {
-            // Gets the length name of each dish
             int dishNameLength = dish.getName().length();
             if (dishNameLength > maxItemNameLength)
                 maxItemNameLength = dishNameLength;
@@ -251,31 +268,32 @@ public class SpecialVendingMachine extends RegularVendingMachine{
             String itemName = dish.getName();
             int itemPrice = dish.getPrice();
 
-            for(Map.Entry<Ingredient, Integer> entry : getSlots().entrySet()){
-                for(Map.Entry<Ingredient, Integer> entry2 : dish.getIngredients().entrySet()){
-                    Ingredient ingredient = entry.getKey();
-                    int ingredientquantity = entry.getValue();
-                    String ingredientName = ingredient.getName();
-                    int ingredientPrice = ingredient.getPrice();
+            int maxDishes = Integer.MAX_VALUE;
 
-                    Ingredient dishingredient = entry.getKey();
-                    String dishingredientname = dishingredient.getName();
-                    int dishingredientquantity = entry.getValue();
+            for (Map.Entry<Ingredient, Integer> entry : dish.getIngredients().entrySet()) {
+                Ingredient ingredient = entry.getKey();
+                int requiredQuantity = entry.getValue();
 
-                    if(ingredientName.equals(dishingredientname) && quantity < dishingredientquantity){
-                        soldout = true;
-                    }
+                if (getSlots().containsKey(ingredient)) {
+                    int availableQuantity = getSlots().get(ingredient);
+                    int maxDishesFromIngredient = availableQuantity / requiredQuantity;
+                    maxDishes = Math.min(maxDishes, maxDishesFromIngredient);
+                } else {
+                    // If any required ingredient is missing in the vending machine, set maxDishes to 0
+                    maxDishes = 0;
+                    break;
                 }
             }
+
             i++;
 
             if (i % 2 == 0) {
                 System.out.println("\n");
             }
 
-            if (quantity >= 1 && !(soldout)) {
+            if (maxDishes >= 1 && !soldout) {
                 // If the item is not out of stock
-                String itemInfo = itemName + " | Price: Php " + decimalFormat.format(itemPrice);
+                String itemInfo = itemName + " | Price: Php " + decimalFormat.format(itemPrice) + " | Available: " + maxDishes;
                 String formattedItemInfo = String.format("%-" + itemInfoWidth + "s", itemInfo);
                 System.out.print(formattedItemInfo);
             } else {

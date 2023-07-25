@@ -126,10 +126,18 @@ public class Driver {
                     sc.nextLine();
 
                     HashMap<Ingredient, Integer> customSlots = new HashMap<>();
+                    HashSet<String> ingredientNames = new HashSet<>();
 
                     for (int i = 1; i <= number; i++) {
                         System.out.print("Enter the name of ingredient for slot " + i + ": ");
                         String ingredientName = sc.nextLine();
+
+                        // Check if the ingredient name is already used
+                        if (ingredientNames.contains(ingredientName)) {
+                            System.out.println("An ingredient with the same name already exists. Please enter a unique name.");
+                            i--;
+                            continue;
+                        }
 
                         System.out.print("Enter the price for ingredient " + ingredientName + ": ");
                         int ingredientPrice = sc.nextInt();
@@ -148,7 +156,19 @@ public class Driver {
                         sc.nextLine();
 
                         Ingredient ingredient = new Ingredient(ingredientName, ingredientPrice, ingredientCalories);
-                        customSlots.put(ingredient, ingredientQuantity);
+
+                        // Check if the ingredient already exists in the customSlots HashMap
+                        if (customSlots.containsKey(ingredient)) {
+                            // If it exists, update the total quantity
+                            int currentQuantity = customSlots.get(ingredient);
+                            customSlots.put(ingredient, currentQuantity + ingredientQuantity);
+                        } else {
+                            // If it doesn't exist, add it to the customSlots HashMap
+                            customSlots.put(ingredient, ingredientQuantity);
+                        }
+
+                        // Add the ingredient name to the HashSet
+                        ingredientNames.add(ingredientName);
                     }
 
 
@@ -197,8 +217,14 @@ public class Driver {
                                     sc.nextLine(); // Clear the input buffer
                                 }
                                 sc.nextLine();
-                                dishCombination.put(ingredient, quantity);
 
+                                // Check if there are enough stocks of the ingredient for the given quantity
+                                if (quantity > customSlots.get(ingredient)) {
+                                    System.out.println("Not enough stocks of " + ingredient.getName() + ". Available stocks: " + customSlots.get(ingredient));
+                                    continue;
+                                }
+
+                                dishCombination.put(ingredient, quantity);
                                 ingredientCount++;
 
                                 if (ingredientCount >= 2) {
@@ -210,6 +236,24 @@ public class Driver {
                                 }
                             } while (true);
 
+                            // Ask for the price of the dish
+                            System.out.print("Enter the price for the dish " + dishName + ": ");
+                            int dishPrice;
+                            while (!sc.hasNextInt() || (dishPrice = sc.nextInt()) <= 0) {
+                                System.out.println("Invalid input. Please enter a positive number for the price.");
+                                sc.nextLine(); // Clear the input buffer
+                            }
+                            sc.nextLine();
+
+                            // Calculate the maximum quantity of the dish that can be created based on ingredient availability
+                            int maxQuantity = Integer.MAX_VALUE;
+                            for (Map.Entry<Ingredient, Integer> entry : dishCombination.entrySet()) {
+                                Ingredient ingredient = entry.getKey();
+                                int quantity = entry.getValue();
+                                int availableStocks = customSlots.get(ingredient);
+                                maxQuantity = Math.min(maxQuantity, availableStocks / quantity);
+                            }
+
                             // Calculate the total calories and price of the dish based on its ingredients
                             int totalCalories = 0;
                             int totalPrice = 0;
@@ -220,8 +264,8 @@ public class Driver {
                                 totalPrice += (ingredient.getPrice() * quantity);
                             }
 
-                            // Add the new dish to the list
-                            Dish customDish = new Dish(dishName, number, totalPrice, totalCalories, dishCombination);
+                            // Add the new dish to the list with the calculated max quantity
+                            Dish customDish = new Dish(dishName, maxQuantity, dishPrice, totalCalories, dishCombination);
                             dishList2.add(customDish);
                         }
 
