@@ -212,7 +212,7 @@ public class VendingMachine {
                     RegularVendingMachine.maintenance();
                 }
                 else if (SpecialVendingMachine !=  null){
-                    SpecialVendingMachine.maintenance();
+                    SpecialVendingMachine.specialMaintenance();
                 }
             }
             else if(choice == 3){

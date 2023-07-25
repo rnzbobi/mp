@@ -183,12 +183,22 @@ public class Driver {
                         sc.nextLine();
 
                         ArrayList<Dish> dishList2 = new ArrayList<Dish>();
+						HashSet<String> dishNames = new HashSet<>();
 
-                        for (int i = 1; i <= numDishes; i++) {
-                            // Ask for the name of the dish
-                            System.out.print("Enter the name of dish " + i + ": ");
-                            String dishName = sc.nextLine();
+						for (int i = 1; i <= numDishes; i++) {
+							// Ask for the name of the dish
+							String dishName;
+							do {
+								System.out.print("Enter the name of dish " + i + ": ");
+								dishName = sc.nextLine();
 
+								// Check if the dish name is already used
+								if (dishNames.contains(dishName)) {
+									System.out.println("A dish with the same name already exists. Please enter a unique name.");
+								}
+							} while (dishNames.contains(dishName));
+
+							dishNames.add(dishName);
                             HashMap<Ingredient, Integer> dishCombination = new HashMap<>();
                             int ingredientCount = 0;
 
