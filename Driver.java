@@ -126,7 +126,7 @@ public class Driver {
                     sc.nextLine();
 
                     HashMap<Ingredient, Integer> customSlots = new HashMap<>();
-					
+
                     for (int i = 1; i <= number; i++) {
                         System.out.print("Enter the name of ingredient for slot " + i + ": ");
                         String ingredientName = sc.nextLine();
@@ -150,11 +150,86 @@ public class Driver {
                         Ingredient ingredient = new Ingredient(ingredientName, ingredientPrice, ingredientCalories);
                         customSlots.put(ingredient, ingredientQuantity);
                     }
-                    ArrayList<Dish> dishList2 = new ArrayList<Dish>();
-                    vendingmachine.createVendingMachine(name, type, customSlots, dishList2);
-                    vendingMachineCreated = true;
-                    break;
-					
+
+
+                    if (type.equalsIgnoreCase("Special")) {
+                        // Ask for the number of dishes the user wants to create
+                        System.out.print("How many dishes do you want to create?: ");
+                        int numDishes;
+                        while (!sc.hasNextInt() || (numDishes = sc.nextInt()) < 1) {
+                            System.out.println("Invalid input. Please enter a number greater than or equal to 1.");
+                            sc.nextLine(); // Clear the input buffer
+                        }
+                        sc.nextLine();
+
+                        ArrayList<Dish> dishList2 = new ArrayList<Dish>();
+
+                        for (int i = 1; i <= numDishes; i++) {
+                            // Ask for the name of the dish
+                            System.out.print("Enter the name of dish " + i + ": ");
+                            String dishName = sc.nextLine();
+
+                            HashMap<Ingredient, Integer> dishCombination = new HashMap<>();
+                            int ingredientCount = 0;
+
+                            do {
+                                System.out.print("Enter the name of ingredient for slot " + (ingredientCount + 1) + " for the dish " + dishName + ": ");
+                                String ingredientName = sc.nextLine();
+
+                                // Find the ingredient in customSlots based on the name
+                                Ingredient ingredient = null;
+                                for (Ingredient existingIngredient : customSlots.keySet()) {
+                                    if (existingIngredient.getName().equalsIgnoreCase(ingredientName)) {
+                                        ingredient = existingIngredient;
+                                        break;
+                                    }
+                                }
+
+                                if (ingredient == null) {
+                                    System.out.println("Ingredient not found. Please enter a valid ingredient.");
+                                    continue;
+                                }
+
+                                System.out.print("Enter the quantity of " + ingredient.getName() + " for the dish " + dishName + ": ");
+                                int quantity;
+                                while (!sc.hasNextInt() || (quantity = sc.nextInt()) < 1) {
+                                    System.out.println("Invalid input. Please enter a number greater than or equal to 1.");
+                                    sc.nextLine(); // Clear the input buffer
+                                }
+                                sc.nextLine();
+                                dishCombination.put(ingredient, quantity);
+
+                                ingredientCount++;
+
+                                if (ingredientCount >= 2) {
+                                    System.out.print("Do you want to add more ingredients to the dish? [Y | N]: ");
+                                    String answer = sc.nextLine();
+                                    if (!answer.equalsIgnoreCase("Y")) {
+                                        break;
+                                    }
+                                }
+                            } while (true);
+
+                            // Calculate the total calories and price of the dish based on its ingredients
+                            int totalCalories = 0;
+                            int totalPrice = 0;
+                            for (Map.Entry<Ingredient, Integer> entry : dishCombination.entrySet()) {
+                                Ingredient ingredient = entry.getKey();
+                                int quantity = entry.getValue();
+                                totalCalories += (ingredient.getCalories() * quantity);
+                                totalPrice += (ingredient.getPrice() * quantity);
+                            }
+
+                            // Add the new dish to the list
+                            Dish customDish = new Dish(dishName, number, totalPrice, totalCalories, dishCombination);
+                            dishList2.add(customDish);
+                        }
+
+                        vendingmachine.createVendingMachine(name, type, customSlots, dishList2);
+                        vendingMachineCreated = true;
+                        break;
+                    }
+
 				case 3:
 				    System.out.println("You chose Option 3: Test Vending Machine");
                     if (vendingMachineCreated) {
