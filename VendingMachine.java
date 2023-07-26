@@ -19,7 +19,7 @@ public class VendingMachine {
      * @param slots the inventory slots of the vending machine
      * @throws InterruptedException if the thread is interrupted while sleeping
      */
-    public void createVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots, ArrayList<Dish> dishList) throws InterruptedException {
+    public void createVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots, ArrayList<Dish> dishList){
         Scanner sc = new Scanner(System.in);
 
         System.out.println("You chose Option 1: Hi Vending Machine [" + name + "]!");
@@ -35,11 +35,6 @@ public class VendingMachine {
         if (isTypeValid){
             if (type.equalsIgnoreCase("Regular")) {
                 System.out.print("Creating a Regular vending machine ");
-                Thread.sleep(1000);
-                System.out.print(". ");
-                Thread.sleep(1000);
-                System.out.print(". ");
-                Thread.sleep(1000);
                 System.out.print(". \n");
                      int total = 0, usertotal = 0;
                      System.out.println("===== YOUR BANK =====");
@@ -56,21 +51,12 @@ public class VendingMachine {
                             bank = new Bank(money,usermoney,total,usertotal);
                             RegularVendingMachine regular = new RegularVendingMachine(name,"Regular",slots,bank);
                             this.RegularVendingMachine = regular;
-                            Thread.sleep(1500);
-                            RegularVendingMachine.displayStartingInventory();
-                            Thread.sleep(1500);
                             System.out.println("\n\n[VENDING MACHINE: ONLINE]");
                             RegularVendingMachine.displayAvailableItem();
 
             } 
 			else if (type.equalsIgnoreCase("Special")) {
                 System.out.println("Creating a Special vending machine ");
-                Thread.sleep(1000);
-				System.out.print(". ");
-				Thread.sleep(1000);
-				System.out.print(". ");
-				Thread.sleep(1000);
-				System.out.print(". \n");
 					int total = 0, usertotal = 0;
 					System.out.println("===== YOUR BANK =====");
 					System.out.println("[Insert the number of Bills/Coins to your BANK]");
@@ -86,37 +72,35 @@ public class VendingMachine {
 							bank = new Bank(money,usermoney,total,usertotal);
 							SpecialVendingMachine special = new SpecialVendingMachine(name,"Special",slots,bank,dishList);
                             this.SpecialVendingMachine = special;
-                            Thread.sleep(1500);
                             SpecialVendingMachine.displayStartingInventory();
-                            Thread.sleep(1500);
                             System.out.println("\n\n[VENDING MACHINE: ONLINE]");
                             SpecialVendingMachine.displaySpecialAvailableItem();
 			}
         } else {
             System.out.println("Invalid vending machine type.");
         }
-    }
+	}
     /**
      * Tests the functionality of the vending machine.
      *
      * @throws InterruptedException if the thread is interrupted while sleeping
      */
-    public void testVendingMachine() throws InterruptedException {
+    public void testVendingMachine() throws InterruptedException{
         String itemname, userchoice, userchoice2;
         int choice;
         Scanner sc = new Scanner(System.in);
 		
 		if(RegularVendingMachine != null) {
             System.out.println("Welcome to Vending Machine [" + RegularVendingMachine.getName() + "]!");
-            Thread.sleep(1500);
+            
             System.out.println("This is a [" + RegularVendingMachine.getType() + "] type of vending machine\n");
-            Thread.sleep(1500);
+            
         }
         else if (SpecialVendingMachine != null) {
             System.out.println("Welcome to Vending Machine [" + SpecialVendingMachine.getName() + "]!");
-            Thread.sleep(1500);
+            
             System.out.println("This is a [" + SpecialVendingMachine.getType() + "] type of vending machine\n");
-            Thread.sleep(1500);
+            
         }
 
         do{
@@ -129,9 +113,9 @@ public class VendingMachine {
             if(choice == 1){
                 do{
                     System.out.println("CURRENT BALANCE OF THE VENDING MACHINE [" + bank.getTotalMoney() + "]");
-                    Thread.sleep(500);
+                    
                     System.out.println("CURRENT BALANCE OF THE USER [" + bank.getUserTotalMoney() + "]");
-                    Thread.sleep(500);
+                    
                     System.out.println("These are all the available items:\n");
                     if (RegularVendingMachine != null) {
                         RegularVendingMachine.displayAvailableItem();
@@ -139,7 +123,7 @@ public class VendingMachine {
                     else if (SpecialVendingMachine != null) {
                         SpecialVendingMachine.displaySpecialAvailableItem();
                     }
-                    Thread.sleep(3000);
+                    
                     System.out.println("\n\nWould you like to order an item? (Y/N): ");
                     userchoice = sc.nextLine();
                     if(userchoice.equalsIgnoreCase("Y")) {
