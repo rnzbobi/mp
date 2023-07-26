@@ -28,8 +28,7 @@ public class VendingMachineView extends JFrame{
     private JTextField[] denominationFields = new JTextField[9];
     private JButton submitBankButton = new JButton("Submit");
     private JPanel displayPanel;
-    private JPanel userMoneyPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    private JPanel calculatorPanel = new JPanel(new GridLayout(4, 3, 5, 5));
+    private JPanel calculatorPanel = new JPanel(new GridLayout(4, 3, 2, 2));
 
     private JLabel userMoneyLabel = new JLabel("User Balance: ");
     private JButton[] calculatorButtons = new JButton[10];
@@ -38,7 +37,7 @@ public class VendingMachineView extends JFrame{
 
 	public VendingMachineView() {
         displayPanel = new JPanel();
-        displayPanel.setLayout(new GridLayout(0, 2, 10, 10));
+        displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.Y_AXIS));
 
         // Update the layout settings for mainMenuPanel
         JPanel mainMenuPanel = new JPanel(new GridBagLayout());
@@ -106,28 +105,16 @@ public class VendingMachineView extends JFrame{
 
         gbc.gridy = 22;
         mainMenuPanel.add(submitBankButton, gbc);
+		
+		for (int i = 1; i <= 9; i++) {
+            calculatorButtons[i] = new JButton(String.valueOf(i));
+            calculatorPanel.add(calculatorButtons[i]);
+        }
+		calculatorButtons[0] = new JButton("0");
 
         gbcDisplayPanel.gridy = 23; // Set the desired row number for the displayPanel
         gbcDisplayPanel.gridwidth = 2; // Make it span the entire row
         mainMenuPanel.add(displayPanel, gbcDisplayPanel);
-
-        // New layout settings for userMoneyPanel
-        userMoneyPanel.add(userMoneyLabel);
-        displayPanel.add(userMoneyPanel);
-
-        // New layout settings for calculatorPanel
-        for (int i = 1; i <= 9; i++) {
-            calculatorButtons[i] = new JButton(String.valueOf(i));
-            calculatorPanel.add(calculatorButtons[i]);
-        }
-        calculatorButtons[0] = new JButton("0");
-        calculatorPanel.add(calculatorButtons[0]);
-
-        calculatorPanel.add(new JLabel()); // Empty label for spacing
-        calculatorPanel.add(calculatorTextField);
-        calculatorPanel.add(submitButton);
-
-        displayPanel.add(calculatorPanel);
 
         nameLabel.setVisible(false);
         nameTextField.setVisible(false);
@@ -181,9 +168,19 @@ public class VendingMachineView extends JFrame{
 
     public void displayAvailableItems(Map<Ingredient, Integer> slots) {
 
+		displayPanel.add(userMoneyLabel);
         // Create a new grid layout with 5 rows and 2 columns to display items and quantity side by side
-        GridLayout gridLayout = new GridLayout(2, 4, 5, 5);
+        GridLayout gridLayout = new GridLayout(5, 2, 3, 5);
         displayPanel.setLayout(gridLayout);
+
+		calculatorPanel.add(new JLabel());
+        calculatorPanel.add(calculatorButtons[0]);
+
+        calculatorPanel.add(new JLabel()); // Empty label for spacing
+		
+		calculatorTextField.setPreferredSize(new Dimension(15, 10));
+        displayPanel.add(calculatorPanel);
+		displayPanel.add(calculatorTextField);
 
         for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
             Ingredient item = entry.getKey();
