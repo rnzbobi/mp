@@ -35,110 +35,106 @@ public class VendingMachineView extends JFrame{
     private JTextField calculatorTextField = new JTextField(10);
     private JButton submitButton = new JButton("Submit");
 
-	public VendingMachineView() {
-        displayPanel = new JPanel();
-        displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.Y_AXIS));
-
-        // Update the layout settings for mainMenuPanel
-        JPanel mainMenuPanel = new JPanel(new GridBagLayout());
-
-        GridBagConstraints gbcDisplayPanel = new GridBagConstraints();
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.CENTER;
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(800, 800);
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        mainMenuPanel.add(coffeeVendingButton, gbc);
-
-        gbc.gridy = 1;
-        mainMenuPanel.add(ownVendingButton, gbc);
-
-        gbc.gridy = 2;
-        mainMenuPanel.add(testVendingButton, gbc);
-
-        gbc.gridy = 3;
-        mainMenuPanel.add(exitButton, gbc);
-
-        gbc.gridy = 4;
-        mainMenuPanel.add(nameLabel, gbc);
-
-        gbc.gridy = 5;
-        mainMenuPanel.add(nameTextField, gbc);
-
-        gbc.gridy = 6;
-        mainMenuPanel.add(typeLabel, gbc);
-
-        gbc.gridy = 7;
-        mainMenuPanel.add(typeTextField, gbc);
-
-        gbc.gridy = 8;
-        mainMenuPanel.add(numberOfItemsLabel, gbc);
-
-        gbc.gridy = 9;
-        mainMenuPanel.add(numberOfItemsTextField, gbc);
-
-        gbc.gridy = 10;
-        mainMenuPanel.add(createButton, gbc);
-
-        gbc.gridy = 11;
-        mainMenuPanel.add(bankLabel, gbc);
-
-        gbc.gridy = 12;
-        mainMenuPanel.add(denominationLabel, gbc);
-
-        String[] denominationNames = {"1000", "500", "200", "100", "50", "20", "10", "5", "1"};
-        for (int i = 0; i < 9; i++) {
-            gbc.gridy = 13 + i;
-            denominations[i] = new JLabel(denominationNames[i] + " Peso :");
-            mainMenuPanel.add(denominations[i], gbc);
-
-            gbc.gridx = 1;
-            denominationFields[i] = new JTextField(5);
-            mainMenuPanel.add(denominationFields[i], gbc);
+        // ... (Existing variable declarations)
+    
+    public VendingMachineView() {
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setSize(800, 800);
+    
+            // Create the main menu panel and set its layout
+            JPanel mainMenuPanel = new JPanel(new GridBagLayout());
+            displayPanel = new JPanel();
+            displayPanel.setLayout(new GridLayout(5, 2, 3, 5));
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5, 5, 5, 5);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.anchor = GridBagConstraints.CENTER;
+    
+            // Add components to the main menu panel
             gbc.gridx = 0;
+            gbc.gridy = 0;
+            mainMenuPanel.add(coffeeVendingButton, gbc);
+    
+            // Add the rest of the components to the main menu panel...
+            gbc.gridy = 1;
+            mainMenuPanel.add(ownVendingButton, gbc);
+    
+            gbc.gridy = 2;
+            mainMenuPanel.add(testVendingButton, gbc);
+    
+            gbc.gridy = 3;
+            mainMenuPanel.add(exitButton, gbc);
+    
+            gbc.gridy = 4;
+            mainMenuPanel.add(nameLabel, gbc);
+    
+            gbc.gridy = 5;
+            mainMenuPanel.add(nameTextField, gbc);
+    
+            gbc.gridy = 6;
+            mainMenuPanel.add(typeLabel, gbc);
+    
+            gbc.gridy = 7;
+            mainMenuPanel.add(typeTextField, gbc);
+    
+            gbc.gridy = 8;
+            mainMenuPanel.add(numberOfItemsLabel, gbc);
+    
+            gbc.gridy = 9;
+            mainMenuPanel.add(numberOfItemsTextField, gbc);
+    
+            gbc.gridy = 10;
+            mainMenuPanel.add(createButton, gbc);
+    
+            gbc.gridy = 11;
+            mainMenuPanel.add(bankLabel, gbc);
+    
+            gbc.gridy = 12;
+            mainMenuPanel.add(denominationLabel, gbc);
+    
+            String[] denominationNames = {"1000", "500", "200", "100", "50", "20", "10", "5", "1"};
+            for (int i = 0; i < 9; i++) {
+                gbc.gridy = 13 + i;
+                denominations[i] = new JLabel(denominationNames[i] + " Peso :");
+                mainMenuPanel.add(denominations[i], gbc);
+    
+                gbc.gridx = 1;
+                denominationFields[i] = new JTextField(5);
+                mainMenuPanel.add(denominationFields[i], gbc);
+                gbc.gridx = 0;
+            }
+    
+            gbc.gridy = 22;
+            mainMenuPanel.add(submitBankButton, gbc);
+    
+            // Create the main content panel and set its layout
+            JPanel mainContentPanel = new JPanel(new BorderLayout());
+    
+            // Create a panel for the user balance and input buttons
+            JPanel userBalancePanel = new JPanel(new BorderLayout());
+            userBalancePanel.add(userMoneyLabel, BorderLayout.NORTH);
+            userBalancePanel.add(calculatorTextField, BorderLayout.CENTER);
+            JPanel buttonPanel = new JPanel(new GridLayout(4, 3, 2, 2));
+            for (int i = 1; i <= 9; i++) {
+                calculatorButtons[i] = new JButton(String.valueOf(i));
+                buttonPanel.add(calculatorButtons[i]);
+            }
+            calculatorButtons[0] = new JButton("0");
+            buttonPanel.add(new JLabel()); // Empty label for spacing
+            buttonPanel.add(calculatorButtons[0]);
+            userBalancePanel.add(buttonPanel, BorderLayout.SOUTH);
+            userBalancePanel.add(submitButton, BorderLayout.EAST); // Add the submit button
+    
+            // Add the user balance panel to the south of the main content panel
+            mainContentPanel.add(userBalancePanel, BorderLayout.SOUTH);
+    
+            // Add the display panel to the center of the main content panel
+            mainContentPanel.add(displayPanel, BorderLayout.CENTER);
+    
+            // Add the main menu panel and main content panel to the frame
+            this.add(mainMenuPanel, BorderLayout.NORTH);
+            this.add(mainContentPanel, BorderLayout.CENTER);
         }
-
-        gbc.gridy = 22;
-        mainMenuPanel.add(submitBankButton, gbc);
-		
-		for (int i = 1; i <= 9; i++) {
-            calculatorButtons[i] = new JButton(String.valueOf(i));
-            calculatorPanel.add(calculatorButtons[i]);
-        }
-		calculatorButtons[0] = new JButton("0");
-
-        gbcDisplayPanel.gridy = 23; // Set the desired row number for the displayPanel
-        gbcDisplayPanel.gridwidth = 2; // Make it span the entire row
-        mainMenuPanel.add(displayPanel, gbcDisplayPanel);
-
-        nameLabel.setVisible(false);
-        nameTextField.setVisible(false);
-        typeLabel.setVisible(false);
-        typeTextField.setVisible(false);
-        numberOfItemsLabel.setVisible(false);
-        numberOfItemsTextField.setVisible(false);
-        createButton.setVisible(false);
-        bankLabel.setVisible(false);
-        denominationLabel.setVisible(false);
-        for (int i = 0; i < 9; i++) {
-            denominations[i].setVisible(false);
-            denominationFields[i].setVisible(false);
-        }
-        submitBankButton.setVisible(false);
-
-        displayPanel.setVisible(false);
-        userMoneyLabel.setVisible(false);
-
-        mainMenuPanel.setVisible(true);
-        mainMenuPanel.add(displayPanel, gbcDisplayPanel);
-
-        this.add(mainMenuPanel);
-    }
 
     // Existing methods remain unchanged
 	
@@ -181,6 +177,7 @@ public class VendingMachineView extends JFrame{
 		calculatorTextField.setPreferredSize(new Dimension(15, 10));
         displayPanel.add(calculatorPanel);
 		displayPanel.add(calculatorTextField);
+        displayPanel.add(submitButton);
 
         for (Map.Entry<Ingredient, Integer> entry : slots.entrySet()) {
             Ingredient item = entry.getKey();
