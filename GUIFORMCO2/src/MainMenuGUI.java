@@ -7,6 +7,9 @@
  *
  * @author rhenz
  */
+import javax.swing.*;
+import java.util.*;
+import java.awt.*;
 public class MainMenuGUI extends javax.swing.JFrame {
 
     /**
@@ -28,13 +31,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         createyourown = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Name = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        SpecialType = new javax.swing.JRadioButton();
+        RegularType = new javax.swing.JRadioButton();
+        SubmitCreate = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        NumberOfItems = new javax.swing.JTextField();
         bank = new javax.swing.JFrame();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -46,32 +49,32 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        oneThousand = new javax.swing.JTextField();
+        twoHundred = new javax.swing.JTextField();
+        fiveHundred = new javax.swing.JTextField();
+        oneHundred = new javax.swing.JTextField();
+        fifty = new javax.swing.JTextField();
+        ten = new javax.swing.JTextField();
+        one = new javax.swing.JTextField();
+        twenty = new javax.swing.JTextField();
+        five = new javax.swing.JTextField();
+        SubmitBills = new javax.swing.JButton();
         VendingMachineView = new javax.swing.JFrame();
         jLabel17 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
+        EspressoRQuantity = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
+        ChocolateChipQuantity = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
+        CinnamonQuantity = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
@@ -83,9 +86,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
+        CaramelSyrupQuantity = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
+        MilkQuantity = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
@@ -93,7 +96,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
-        jLabel68 = new javax.swing.JLabel();
+        VanillaSyrupQuantity = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
@@ -102,44 +105,44 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel46 = new javax.swing.JLabel();
         jLabel70 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
+        HotWaterQuantity = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
+        EspressoQuantity = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
+        UserBalance = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        fiveHundredUser = new javax.swing.JTextField();
+        twoHundredUser = new javax.swing.JTextField();
+        oneThousandUser = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
+        fiftyUser = new javax.swing.JTextField();
+        twentyUser = new javax.swing.JTextField();
+        oneHundredUser = new javax.swing.JTextField();
         jLabel84 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
         jLabel86 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
+        fiveUser = new javax.swing.JTextField();
+        oneUser = new javax.swing.JTextField();
+        tenUser = new javax.swing.JTextField();
         jLabel87 = new javax.swing.JLabel();
         jLabel88 = new javax.swing.JLabel();
-        jLabel89 = new javax.swing.JLabel();
+        WhippedCreamQuantity = new javax.swing.JLabel();
         jLabel90 = new javax.swing.JLabel();
         jLabel91 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
         jLabel93 = new javax.swing.JLabel();
-        jLabel94 = new javax.swing.JLabel();
+        MilkWhiskQuantity = new javax.swing.JLabel();
         jLabel95 = new javax.swing.JLabel();
         jLabel96 = new javax.swing.JLabel();
         jLabel97 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        ItemSelected = new javax.swing.JTextField();
+        SubmitUserMoney = new javax.swing.JButton();
+        ConfirmSelectItem = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -154,29 +157,49 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("NAME OF VENDING MACHINE");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        Name.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("TYPE OF VENDING MACHINE");
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jRadioButton1.setText("SPECIAL");
-
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jRadioButton2.setText("REGULAR");
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("SUBMIT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SpecialType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        SpecialType.setText("SPECIAL");
+        SpecialType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SpecialTypeActionPerformed(evt);
+            }
+        });
+
+        RegularType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        RegularType.setText("REGULAR");
+        RegularType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegularTypeActionPerformed(evt);
+            }
+        });
+
+        SubmitCreate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        SubmitCreate.setText("SUBMIT");
+        SubmitCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitCreateActionPerformed(evt);
             }
         });
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel25.setText("NUMBER OF ITEMS PER SLOT");
 
-        jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        NumberOfItems.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        NumberOfItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumberOfItemsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout createyourownLayout = new javax.swing.GroupLayout(createyourown.getContentPane());
         createyourown.getContentPane().setLayout(createyourownLayout);
@@ -187,20 +210,20 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addGroup(createyourownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createyourownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(NumberOfItems, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(createyourownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1))
+                        .addComponent(Name))
                     .addGroup(createyourownLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addGroup(createyourownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SubmitCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(createyourownLayout.createSequentialGroup()
-                                .addComponent(jRadioButton2)
+                                .addComponent(RegularType)
                                 .addGap(47, 47, 47)
-                                .addComponent(jRadioButton1)))))
-                .addContainerGap(323, Short.MAX_VALUE))
+                                .addComponent(SpecialType)))))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         createyourownLayout.setVerticalGroup(
             createyourownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,19 +231,19 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(createyourownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(SpecialType)
+                    .addComponent(RegularType))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel25)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NumberOfItems, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SubmitCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -257,11 +280,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel13.setText("1");
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton6.setText("SUBMIT");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        SubmitBills.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SubmitBills.setText("SUBMIT");
+        SubmitBills.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                SubmitBillsActionPerformed(evt);
             }
         });
 
@@ -282,9 +305,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
                                 .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(twoHundred, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(oneThousand, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fiveHundred, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(50, 50, 50)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -292,9 +315,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fifty, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(oneHundred, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(twenty, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -302,12 +325,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addComponent(jLabel13))
                         .addGap(18, 18, 18)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ten, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(one, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(five, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(bankLayout.createSequentialGroup()
                         .addGap(275, 275, 275)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SubmitBills, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
                 .addGap(64, 64, 64))
         );
@@ -323,39 +346,39 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(bankLayout.createSequentialGroup()
                                 .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(oneThousand, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fiveHundred, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8))
                     .addGroup(bankLayout.createSequentialGroup()
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(oneHundred, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fifty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(twoHundred, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(twenty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(bankLayout.createSequentialGroup()
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ten, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel12)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(five, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel13)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(one, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SubmitBills, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
 
@@ -366,7 +389,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\5.png")); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("Espresso Roast");
@@ -377,8 +399,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel35.setText("Calorie: 5");
 
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel36.setText("0");
+        EspressoRQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EspressoRQuantity.setText("0");
 
         jLabel53.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel53.setText("Quantity:");
@@ -386,8 +408,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel56.setText("Php 29.00");
 
-        jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel57.setText("0");
+        ChocolateChipQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ChocolateChipQuantity.setText("0");
 
         jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel62.setText("Chocolate Chip");
@@ -400,7 +422,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel20.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\1.png")); // NOI18N
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel37.setText("Quantity:");
@@ -408,12 +429,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel38.setText("Calorie: 19");
 
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel39.setText("0");
+        CinnamonQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CinnamonQuantity.setText("0");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\3.png")); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setText("Cinnamon");
@@ -423,7 +443,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel21.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\2.png")); // NOI18N
 
         jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel64.setText("Caramel Syrup");
@@ -436,7 +455,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel22.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\6.png")); // NOI18N
 
         jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel40.setText("Quantity:");
@@ -447,18 +465,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel60.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel60.setText("Php 49.00");
 
-        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel61.setText("0");
+        CaramelSyrupQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CaramelSyrupQuantity.setText("0");
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel41.setText("Calorie: 149");
 
-        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel42.setText("0");
+        MilkQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        MilkQuantity.setText("0");
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\7.png")); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setText("Milk");
@@ -471,7 +488,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel23.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\8.png")); // NOI18N
 
         jLabel66.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel66.setText("Quantity:");
@@ -479,12 +495,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel67.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel67.setText("Php 49.00");
 
-        jLabel68.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel68.setText("0");
+        VanillaSyrupQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        VanillaSyrupQuantity.setText("0");
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel24.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\9.png")); // NOI18N
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel69.setText("Hot Water");
@@ -497,7 +512,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel26.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\10.png")); // NOI18N
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel46.setText("Quantity:");
@@ -508,24 +522,23 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel71.setText("Php 1.00");
 
-        jLabel72.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel72.setText("0");
+        HotWaterQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        HotWaterQuantity.setText("0");
 
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel47.setText("Calorie: 3");
 
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel48.setText("0");
+        EspressoQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EspressoQuantity.setText("0");
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel27.setIcon(new javax.swing.ImageIcon("C:\\Users\\rhenz\\Documents\\GitHub\\mp\\Untitled design\\4.png")); // NOI18N
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel28.setText("Espresso");
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel31.setText("0");
+        UserBalance.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        UserBalance.setText("0");
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel32.setText("200");
@@ -539,9 +552,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel50.setText("500");
         jLabel50.setToolTipText("");
 
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+        oneThousandUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
+                oneThousandUserActionPerformed(evt);
             }
         });
 
@@ -557,9 +570,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel73.setText("50");
         jLabel73.setToolTipText("");
 
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+        oneHundredUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
+                oneHundredUserActionPerformed(evt);
             }
         });
 
@@ -575,9 +588,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel86.setText("5");
         jLabel86.setToolTipText("");
 
-        jTextField20.addActionListener(new java.awt.event.ActionListener() {
+        tenUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField20ActionPerformed(evt);
+                tenUserActionPerformed(evt);
             }
         });
 
@@ -587,8 +600,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel88.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel88.setText("Php 199.00");
 
-        jLabel89.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel89.setText("0");
+        WhippedCreamQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        WhippedCreamQuantity.setText("0");
 
         jLabel90.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel90.setText("Whipped Cream");
@@ -602,8 +615,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel93.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel93.setText("Php 59.00");
 
-        jLabel94.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel94.setText("0");
+        MilkWhiskQuantity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        MilkWhiskQuantity.setText("0");
 
         jLabel95.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel95.setText("Milk Whisk");
@@ -614,19 +627,19 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel97.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel97.setText("INSERT MONEY");
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton7.setText("SUBMIT");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        SubmitUserMoney.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        SubmitUserMoney.setText("SUBMIT");
+        SubmitUserMoney.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                SubmitUserMoneyActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton8.setText("CONFIRM");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        ConfirmSelectItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ConfirmSelectItem.setText("CONFIRM");
+        ConfirmSelectItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                ConfirmSelectItemActionPerformed(evt);
             }
         });
 
@@ -651,7 +664,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel34)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(EspressoRQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel74)
                             .addComponent(jLabel35)
                             .addComponent(jLabel15)
@@ -660,7 +673,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel37)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(CinnamonQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,62 +685,62 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                         .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                             .addComponent(jLabel49)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(oneThousandUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel32)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(twoHundredUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel50)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(fiveHundredUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGap(18, 18, 18)
                                     .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                             .addComponent(jLabel52)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(oneHundredUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel51)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(twentyUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel73)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(fiftyUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel84)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(oneUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel86)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(fiveUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                             .addComponent(jLabel85)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(tenUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(88, 88, 88))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VendingMachineViewLayout.createSequentialGroup()
                                     .addComponent(jLabel97)
                                     .addGap(139, 139, 139)))
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addGap(60, 60, 60)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(SubmitUserMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22)
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ConfirmSelectItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel33)
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel43)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel31))
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(UserBalance))
+                            .addComponent(ItemSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                         .addGap(280, 280, 280)
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -738,7 +751,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel70)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(HotWaterQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel83)))
                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -749,7 +762,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel46)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(EspressoQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel82)))
                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -761,14 +774,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel87)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(WhippedCreamQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel90)
                             .addComponent(jLabel88)
                             .addComponent(jLabel75)
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addComponent(jLabel53)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ChocolateChipQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel62)
                             .addComponent(jLabel56))
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -782,7 +795,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addComponent(jLabel92)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(MilkWhiskQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel95)
                                     .addComponent(jLabel93))
                                 .addGap(23, 23, 23)
@@ -797,7 +810,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel55)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel61, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(CaramelSyrupQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -807,7 +820,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addComponent(jLabel66)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(VanillaSyrupQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel81)))))
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addGap(170, 170, 170)
@@ -816,7 +829,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addComponent(jLabel40)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(MilkQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel78)))
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -839,7 +852,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel34)
-                                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(EspressoRQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
@@ -857,7 +870,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel37)
-                                            .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(CinnamonQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -867,7 +880,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                 .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel53)
-                                    .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(ChocolateChipQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel62)
                                 .addGap(5, 5, 5)
@@ -879,7 +892,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel40)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(MilkQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -904,7 +917,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel92)
-                                            .addComponent(jLabel94, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(MilkWhiskQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel95)
                                         .addGap(5, 5, 5)
@@ -921,7 +934,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(jLabel87)
-                                                    .addComponent(jLabel89, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(WhippedCreamQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel90)
                                                 .addGap(5, 5, 5)
@@ -939,7 +952,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                                 .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(jLabel46)
-                                                    .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(EspressoQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel28)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -952,7 +965,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel70)
-                                            .addComponent(jLabel72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(HotWaterQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel69)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -970,56 +983,55 @@ public class MainMenuGUI extends javax.swing.JFrame {
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel49)
-                                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(oneThousandUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel50)
-                                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(fiveHundredUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel32)
-                                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(twoHundredUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel52)
-                                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(oneHundredUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel73)
-                                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(fiftyUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel51)
-                                            .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(twentyUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, VendingMachineViewLayout.createSequentialGroup()
                                         .addGap(2, 2, 2)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel85)
-                                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(tenUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel86)
-                                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(fiveUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel84)
-                                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(oneUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(33, 33, 33)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SubmitUserMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
-                                .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ItemSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel43)
-                                    .addComponent(jLabel31))
+                                    .addComponent(UserBalance))
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ConfirmSelectItem, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(160, 160, 160))
                     .addGroup(VendingMachineViewLayout.createSequentialGroup()
-                        .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel55)
-                            .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(CaramelSyrupQuantity))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(VendingMachineViewLayout.createSequentialGroup()
@@ -1032,7 +1044,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(VendingMachineViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel66)
-                            .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(VanillaSyrupQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel65)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1120,7 +1132,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1137,38 +1149,389 @@ public class MainMenuGUI extends javax.swing.JFrame {
         createyourown.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void SubmitCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitCreateActionPerformed
+        this.name = Name.getText();
+        
+        if(RegularType.isSelected()){
+            this.type = "Regular";
+        }
+        else if(SpecialType.isSelected()){
+            this.type = "Special";
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Please select a type.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+        this.numberOfItems = Integer.parseInt(NumberOfItems.getText());
+            if (numberOfItems < 10) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a number greater than or equal to 10.");
+		return; // Exit the method if the input is less than 10
+            }
+	} catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+            return; // Exit the method if the input is not a valid number
+        }
         createyourown.setVisible(false);
-        bank.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        setTitle("[" + type + "]" + "Vending Machine: " + name);
+        createyourown.setTitle("[" + type + "]" + "Vending Machine: " + name);
+        bank.setTitle("[" + type + "]" + "Vending Machine: " + name);
+        VendingMachineView.setTitle("[" + type + "]" + "Vending Machine: " + name);
+        
+        Ingredient EspressoRoast = new Ingredient("Espresso Roast", 999, 5, "1.png");
+        Ingredient Milk = new Ingredient("Milk", 99, 149, "6.png");
+        Ingredient VanillaSyrup = new Ingredient("Vanilla Syrup", 49, 77, "9.png");
+        Ingredient CaramelSyrup = new Ingredient("Caramel Syrup", 49, 30, "7.png");
+        Ingredient ChocolateChips = new Ingredient("Chocolate Chips", 29, 136, "5.png");
+        Ingredient WhippedCream = new Ingredient("Whipped Cream", 199, 72, "3.png");
+        Ingredient MilkWhisk = new Ingredient("Milk Whisk", 59, 149, "8.png");
+        Ingredient HotWater = new Ingredient("Hot Water", 1, 12, "4.png");
+        Ingredient Cinnamon = new Ingredient("Cinnamon", 189, 19, "2.png");
+        Ingredient Espresso = new Ingredient("Espresso", 349, 3, "10.png");
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        HashMap<Ingredient, Integer> CM = new HashMap<>();
+        CM.put(EspressoRoast,1);
+        CM.put(Milk,1);
+        CM.put(VanillaSyrup,2);
+        CM.put(CaramelSyrup,1);
+
+        HashMap<Ingredient, Integer> WCM = new HashMap<>();
+        WCM.put(EspressoRoast,1);
+        WCM.put(ChocolateChips,3);
+        WCM.put(Milk,1);
+        WCM.put(WhippedCream,1);
+
+        HashMap<Ingredient, Integer> CA = new HashMap<>();
+        CA.put(HotWater,1);
+        CA.put(EspressoRoast,1);
+
+        HashMap<Ingredient, Integer> CL = new HashMap<>();
+        CL.put(EspressoRoast,1);
+        CL.put(Milk,1);
+        CL.put(MilkWhisk,1);
+        CL.put(VanillaSyrup,2);
+
+        HashMap<Ingredient, Integer> CAP = new HashMap<>();
+        CAP.put(Espresso,2);
+        CAP.put(Milk,1);
+        CAP.put(Cinnamon,2);
+        
+        slots.put(EspressoRoast, numberOfItems);
+        slots.put(Milk, numberOfItems);
+        slots.put(VanillaSyrup, numberOfItems);
+        slots.put(CaramelSyrup, numberOfItems);
+        slots.put(ChocolateChips, numberOfItems);
+        slots.put(WhippedCream, numberOfItems);
+        slots.put(MilkWhisk, numberOfItems);
+        slots.put(HotWater, numberOfItems);
+        slots.put(Cinnamon, numberOfItems);
+        slots.put(Espresso, numberOfItems);
+
+        Dish CaramelMacchiato = new Dish("Caramel Macchiato", numberOfItems, 210, 338, CM);
+        Dish WhiteChocolateMocha = new Dish("White Chocolate Mocha", numberOfItems, 210, 634, WCM);
+        Dish CaffeAmericano = new Dish("Caffe Americano", numberOfItems, 165, 17, CA);
+        Dish CaffeLatte = new Dish("Caffe Latte", numberOfItems, 190, 457, CL);
+        Dish Cappucino = new Dish("Cappucino", numberOfItems, 165, 193, CAP);
+
+        dishList.add(CaramelMacchiato);
+        dishList.add(WhiteChocolateMocha);
+        dishList.add(CaffeAmericano);
+        dishList.add(CaffeLatte);
+        dishList.add(Cappucino);
+
+        bank.setVisible(true);
+    }//GEN-LAST:event_SubmitCreateActionPerformed
+
+    private void SubmitBillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBillsActionPerformed
+        HashMap<Integer, Integer> bankDetails = new HashMap<>();
+        JTextField[] billFields = {oneThousand, fiveHundred, twoHundred, oneHundred, fifty, twenty};
+        JTextField[] coinFields = {ten, five, one};
+        int total = 0;
+        try {
+            int oneKBills = getValueFromTextField(oneThousand);
+            int fiveHBills = getValueFromTextField(fiveHundred);
+            int twoHBills = getValueFromTextField(twoHundred);
+            int oneHBills = getValueFromTextField(oneHundred);
+            int fiftyBills = getValueFromTextField(fifty);
+            int twentyBills = getValueFromTextField(twenty);
+            int tenCoins = getValueFromTextField(ten);
+            int fiveCoins = getValueFromTextField(five);
+            int oneCoins = getValueFromTextField(one);
+            
+            if (oneKBills < 0 || fiveHBills < 0 || twoHBills < 0 || oneHBills < 0 ||
+                fiftyBills < 0 || twentyBills < 0 || tenCoins < 0 || fiveCoins < 0 || oneCoins < 0) {
+                JOptionPane.showMessageDialog(null, "Invalid input: Bills and coins counts cannot be negative.");
+                return;
+            }
+            
+            bankDetails.put(1000, oneKBills);
+            total += 1000 * oneKBills;
+            bankDetails.put(500, fiveHBills);
+            total += 500 * fiveHBills;
+            bankDetails.put(200, twoHBills);
+            total += 200 * twoHBills;
+            bankDetails.put(100, oneHBills);
+            total += 100 * oneHBills;
+            bankDetails.put(50, fiftyBills);
+            total += 50 * fiftyBills;
+            bankDetails.put(20, twentyBills);
+            total += 20 * twentyBills;
+            bankDetails.put(10, tenCoins);
+            total += 10 * tenCoins;
+            bankDetails.put(5, fiveCoins);
+            total += 5 * fiveCoins;
+            bankDetails.put(1, oneCoins);
+            total += 1 * oneCoins;
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid input: Please enter valid positive numbers.");
+            return;
+        }
+        
+        String firstMessage = "Hi Vending Machine [" + name + "] has been successfully created!";
+        String secondMessage = "The vending machine has a balance of [" + total + "]";
+        String fullMessage = firstMessage + "\n" + secondMessage;
+        vendingMachine.createVendingMachine(name, type, slots, dishList, bankDetails, total);
+        JOptionPane.showMessageDialog(null, fullMessage, "Multiple Messages", JOptionPane.INFORMATION_MESSAGE);
+        updateAllQuantities(numberOfItems);
         bank.setVisible(false);
         VendingMachineView.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_SubmitBillsActionPerformed
 
-    private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
+    private void tenUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField20ActionPerformed
+    }//GEN-LAST:event_tenUserActionPerformed
 
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+    private void oneHundredUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneHundredUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
+    }//GEN-LAST:event_oneHundredUserActionPerformed
 
-    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+    private void oneThousandUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneThousandUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField14ActionPerformed
+    }//GEN-LAST:event_oneThousandUserActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void SubmitUserMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitUserMoneyActionPerformed
+        JTextField[] billFields = {oneThousandUser, fiveHundredUser, twoHundredUser, oneHundredUser, fiftyUser, twentyUser};
+        JTextField[] coinFields = {tenUser, fiveUser, oneUser};
+        int total = 0;
+       
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(1000, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(500, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(200, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(100, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(50, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(20, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(10, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(5, 0);
+        vendingMachine.RegularVendingMachine.bank.updateUserMoney(1, 0);
+        
+        for(int i = 0; i < 6; i++) {
+            if(!billFields[i].getText().isEmpty()){
+                switch (i) {
+                    case 0:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(1000, Integer.parseInt(billFields[i].getText()));
+                        total += 1000 * Integer.parseInt(billFields[i].getText());
+                        billFields[i].setText("");
+                        break;
+                    case 1:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(500, Integer.parseInt(billFields[i].getText()));
+                        total += 500 * Integer.parseInt(billFields[i].getText());
+                        billFields[i].setText("");
+                        break;
+                    case 2:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(200, Integer.parseInt(billFields[i].getText()));
+                        total += Integer.parseInt(billFields[i].getText()) * 200;
+                        billFields[i].setText("");
+                        break;
+                    case 3:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(100, Integer.parseInt(billFields[i].getText()));
+                        total += 100 * Integer.parseInt(billFields[i].getText());
+                        billFields[i].setText("");
+                        break;
+                    case 4:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(50, Integer.parseInt(billFields[i].getText()));
+                        total += 50 * Integer.parseInt(billFields[i].getText());
+                        billFields[i].setText("");
+                        break;
+                    case 5:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(20, Integer.parseInt(billFields[i].getText()));
+                        total += 20 * Integer.parseInt(billFields[i].getText());
+                        billFields[i].setText("");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        
+        for(int i = 0; i < 3; i++) {
+            if(!coinFields[i].getText().isEmpty()){
+                switch (i) {
+                    case 0:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(10, Integer.parseInt(coinFields[i].getText()));
+                        total += 10 * Integer.parseInt(coinFields[i].getText());
+                        coinFields[i].setText("");
+                        break;
+                    case 1:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(5, Integer.parseInt(coinFields[i].getText()));
+                        total += 5 * Integer.parseInt(coinFields[i].getText());
+                        coinFields[i].setText("");
+                        break;
+                    case 2:
+                        vendingMachine.RegularVendingMachine.bank.updateUserMoney(1, Integer.parseInt(coinFields[i].getText()));
+                        total += 1 * Integer.parseInt(coinFields[i].getText());
+                        coinFields[i].setText("");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+       
+        vendingMachine.RegularVendingMachine.bank.updateUserTotalMoney(total);
+        String totalmoney = Integer.toString(vendingMachine.RegularVendingMachine.bank.getUserTotalMoney());
+        UserBalance.setText(totalmoney);
+    }//GEN-LAST:event_SubmitUserMoneyActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void ConfirmSelectItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmSelectItemActionPerformed
+        String itemname = ItemSelected.getText();
+        Ingredient selectedIngredient = new Ingredient();
+        int price = 0, calories = 0;
+        int quantity = 0;
+        boolean check;
+        check = vendingMachine.RegularVendingMachine.selectItem(itemname);
+        
+        if(check == true){
+            HashMap<Ingredient, Integer> availableItems = vendingMachine.RegularVendingMachine.inventory[1].getStocks();
 
+            for (Map.Entry<Ingredient, Integer> items : availableItems.entrySet()) { // for-each loop to iterate over all items
+                Ingredient ingredient = items.getKey();
+                quantity = items.getValue();
+                price = ingredient.getPrice();
+                calories = ingredient.getCalories();
+                if(itemname.equalsIgnoreCase(ingredient.getName())){
+                    itemname = ingredient.getName();
+                    selectedIngredient = ingredient;
+                    break;
+                }
+            }
+        
+            int total = Bank.getUserTotalMoney() - price;
+            int totalowner = Bank.getTotalMoney() + price;
+            String message1 = "You have selected the item [" + itemname + "]";
+            String message2 = "The calories for this item is: " + calories;
+            String itemMessage = message1 + "\n" + message2;
+            JOptionPane.showMessageDialog(null, itemMessage, "Multiple Messages", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Dispensing item...");
+            JOptionPane.showMessageDialog(null,"Generating receipt...");
+            
+            int amountPaid = total + price;
+            int amountToPay = price;
+            
+            Map<Integer, Integer> change = vendingMachine.dispenseChange(amountPaid, amountToPay);
+            StringBuilder receiptBuilder = new StringBuilder();
+            if (change != null) {
+                    quantity--;
+                    slots.put(selectedIngredient, quantity);
+                    vendingMachine.RegularVendingMachine.bank.updateUserTotalMoney(total);
+                    vendingMachine.RegularVendingMachine.bank.updateTotalMoney(totalowner);
+
+                    Log sale = new Log(selectedIngredient.getName(), price, 1);
+                    vendingMachine.RegularVendingMachine.Sales.add(sale); //adds the sale to log
+                    
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(1000, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(500, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(200, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(100, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(50, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(10, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(5, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserMoney(1, 0);
+                    vendingMachine.RegularVendingMachine.bank.updateUserTotalMoney(0);
+                    
+                    receiptBuilder.append("-------------------------\n");
+                    receiptBuilder.append("       RECEIPT\n");
+                    receiptBuilder.append("-------------------------\n");
+                    receiptBuilder.append("Item: ").append(itemname);
+                    receiptBuilder.append("\nPrice: Php ").append(price);
+                    receiptBuilder.append("\nTendered: ").append(amountPaid);
+                    receiptBuilder.append("\nChange: ").append(total);
+
+                    for(int denomination : change.keySet()) {
+                        int numNotes = change.get(denomination);
+                        if(numNotes != 0) {
+                            receiptBuilder.append("\nChange Denomination: ").append(denomination).append(", Quantity").
+                                           append(numNotes).append("\n");
+                        }
+                    }
+            } else {
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(1000, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(500, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(200, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(100, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(50, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(10, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(5, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserMoney(1, 0);
+                vendingMachine.RegularVendingMachine.bank.updateUserTotalMoney(0);
+            }
+            receiptBuilder.append("\n-------------------------");
+            receiptBuilder.append("\nThank you for purchasing!");
+            String receiptMessage = receiptBuilder.toString();
+            JOptionPane.showMessageDialog(null, receiptMessage, "Receipt", JOptionPane.INFORMATION_MESSAGE);
+            UserBalance.setText("0");
+        }
+        else {
+            String errorMessage1 = "There is an error processing your request.";
+            String errorMessage2 = "Please double check your balance or the quantity of the product.";
+            String errorMessage = errorMessage1 + "\n" + errorMessage2;
+            JOptionPane.showMessageDialog(null, errorMessage, "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_ConfirmSelectItemActionPerformed
+
+    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
+        //NAME
+    }//GEN-LAST:event_NameActionPerformed
+
+    private void RegularTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegularTypeActionPerformed
+        //REGULAR
+    }//GEN-LAST:event_RegularTypeActionPerformed
+
+    private void SpecialTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpecialTypeActionPerformed
+        //SPECIAL
+    }//GEN-LAST:event_SpecialTypeActionPerformed
+
+    private void NumberOfItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberOfItemsActionPerformed
+        //NUMBEROFSLOTS
+    }//GEN-LAST:event_NumberOfItemsActionPerformed
+    
+    private int getValueFromTextField(JTextField textField) throws NumberFormatException {
+        String text = textField.getText().trim();
+        if (text.isEmpty()) {
+            throw new NumberFormatException("Empty text field");
+        }
+        try {
+            int value = Integer.parseInt(text);
+            if (value < 0) {
+                throw new NumberFormatException("Negative input");
+            }
+            return value;
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException("Invalid input: Please enter a valid positive number.");
+        }
+    }
+    
+    private void updateAllQuantities(int quantity){
+        EspressoRQuantity.setText(Integer.toString(quantity));
+        ChocolateChipQuantity.setText(Integer.toString(quantity));
+        CinnamonQuantity.setText(Integer.toString(quantity));
+        MilkQuantity.setText(Integer.toString(quantity));
+        MilkWhiskQuantity.setText(Integer.toString(quantity));
+        EspressoQuantity.setText(Integer.toString(quantity));
+        WhippedCreamQuantity.setText(Integer.toString(quantity));
+        HotWaterQuantity.setText(Integer.toString(quantity));
+        CaramelSyrupQuantity.setText(Integer.toString(quantity));
+        VanillaSyrupQuantity.setText(Integer.toString(quantity));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1203,19 +1566,47 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    protected String name;
+    protected String type;
+    protected int numberOfItems;
+    protected VendingMachine vendingMachine = new VendingMachine();
+    HashMap<Ingredient, Integer> slots = new HashMap<>();
+    ArrayList<Dish> dishList = new ArrayList<Dish>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CaramelSyrupQuantity;
+    private javax.swing.JLabel ChocolateChipQuantity;
+    private javax.swing.JLabel CinnamonQuantity;
+    private javax.swing.JButton ConfirmSelectItem;
+    private javax.swing.JLabel EspressoQuantity;
+    private javax.swing.JLabel EspressoRQuantity;
+    private javax.swing.JLabel HotWaterQuantity;
+    private javax.swing.JTextField ItemSelected;
+    private javax.swing.JLabel MilkQuantity;
+    private javax.swing.JLabel MilkWhiskQuantity;
+    private javax.swing.JTextField Name;
+    private javax.swing.JTextField NumberOfItems;
+    private javax.swing.JRadioButton RegularType;
+    private javax.swing.JRadioButton SpecialType;
+    private javax.swing.JButton SubmitBills;
+    private javax.swing.JButton SubmitCreate;
+    private javax.swing.JButton SubmitUserMoney;
+    private javax.swing.JLabel UserBalance;
+    private javax.swing.JLabel VanillaSyrupQuantity;
     private javax.swing.JFrame VendingMachineView;
+    private javax.swing.JLabel WhippedCreamQuantity;
     private javax.swing.JFrame bank;
     private javax.swing.JFrame createyourown;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField fifty;
+    private javax.swing.JTextField fiftyUser;
+    private javax.swing.JTextField five;
+    private javax.swing.JTextField fiveHundred;
+    private javax.swing.JTextField fiveHundredUser;
+    private javax.swing.JTextField fiveUser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1238,23 +1629,18 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
@@ -1263,21 +1649,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
@@ -1293,38 +1675,25 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField one;
+    private javax.swing.JTextField oneHundred;
+    private javax.swing.JTextField oneHundredUser;
+    private javax.swing.JTextField oneThousand;
+    private javax.swing.JTextField oneThousandUser;
+    private javax.swing.JTextField oneUser;
+    private javax.swing.JTextField ten;
+    private javax.swing.JTextField tenUser;
+    private javax.swing.JTextField twenty;
+    private javax.swing.JTextField twentyUser;
+    private javax.swing.JTextField twoHundred;
+    private javax.swing.JTextField twoHundredUser;
     // End of variables declaration//GEN-END:variables
 }
