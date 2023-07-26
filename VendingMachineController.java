@@ -25,6 +25,10 @@ public class VendingMachineController implements ActionListener{
         view.addTypeTextFieldListener(this);
         view.addNumberOfItemsTextFieldListener(this);
 		view.addCreateListener(this);
+		view.addSubmitBankListener(this);
+		view.addCalculatorButtonListener(this);
+		view.addCalculatorTextFieldListener(this);
+		view.addSubmitButtonListener(this);
     }
 	
 	@Override
@@ -35,6 +39,7 @@ public class VendingMachineController implements ActionListener{
 			if (vendingMachineCreated) {
 				JOptionPane.showMessageDialog(view, "There is already a vending machine!");
 			} else {
+				view.showMainMenuFields(false);
 				view.showCoffeeVendingFields(true);
 				// Do NOT call createCoffeeVendingMachine() here
 			}
@@ -42,8 +47,9 @@ public class VendingMachineController implements ActionListener{
 			// Handle Own Vending Machine button action
 			// ...
 		} else if (source == view.getTestVendingButton()) {
-			// Handle Test Vending Machine button action
-			// ...
+			view.showMainMenuFields(false); // Hide the main menu buttons
+			view.showDisplayMenuFields(true);
+			view.displayAvailableItems(vendingMachineModel.RegularVendingMachine.getSlots()); // Assuming getSlots() returns the slots from the model
 		} else if (source == view.getExitButton()) {
 			System.exit(0);
 		} else if (source == view.getNameTextField()) {
@@ -61,23 +67,34 @@ public class VendingMachineController implements ActionListener{
 			// Handle the number of items text field event here
 			// ...
 		} else if (source == view.getCreateButton()) {
+			view.showCoffeeVendingFields(false);
+			view.showBankDetails(true);
+		} else if (source == view.getSubmitBankButton()) {
 			createCoffeeVendingMachine();
-			//view.showBankDetails(true);
+			view.showBankDetails(false);
+			view.showMainMenuFields(false);
+			view.showTestMenuFields(true);
+		} else if (source == view.getSubmitButton()){
+			//
+		} else if (source == view.getCalculatorButtons()){
+
+		} else if (source == view.getCalculatorTextField()){
+
 		}
 	}
 	
 	private void createCoffeeVendingMachine(){
         // ... (existing code for creating a coffee vending machine)
-		Ingredient EspressoRoast = new Ingredient("Espresso Roast", 999, 5);
-        Ingredient Milk = new Ingredient("Milk", 99, 149);
-        Ingredient VanillaSyrup = new Ingredient("Vanilla Syrup", 49, 77);
-        Ingredient CaramelSyrup = new Ingredient("Caramel Syrup", 49, 30);
-        Ingredient ChocolateChips = new Ingredient("Chocolate Chips", 29, 136);
-        Ingredient WhippedCream = new Ingredient("Whipped Cream", 199, 72);
-        Ingredient MilkWhisk = new Ingredient("Milk Whisk", 59, 149);
-        Ingredient HotWater = new Ingredient("Hot Water", 1, 12);
-        Ingredient Cinnamon = new Ingredient("Cinnamon", 189, 19);
-        Ingredient Espresso = new Ingredient("Espresso", 349, 3);
+		Ingredient EspressoRoast = new Ingredient("Espresso Roast", 999, 5, "1.png");
+        Ingredient Milk = new Ingredient("Milk", 99, 149, "6.png");
+        Ingredient VanillaSyrup = new Ingredient("Vanilla Syrup", 49, 77, "9.png");
+        Ingredient CaramelSyrup = new Ingredient("Caramel Syrup", 49, 30, "7.png");
+        Ingredient ChocolateChips = new Ingredient("Chocolate Chips", 29, 136, "5.png");
+        Ingredient WhippedCream = new Ingredient("Whipped Cream", 199, 72, "3.png");
+        Ingredient MilkWhisk = new Ingredient("Milk Whisk", 59, 149, "8.png");
+        Ingredient HotWater = new Ingredient("Hot Water", 1, 12, "4.png");
+        Ingredient Cinnamon = new Ingredient("Cinnamon", 189, 19, "2.png");
+        Ingredient Espresso = new Ingredient("Espresso", 349, 3, "10.png");
 
         HashMap<Ingredient, Integer> CM = new HashMap<>();
         CM.put(EspressoRoast,1);
@@ -143,7 +160,7 @@ public class VendingMachineController implements ActionListener{
         dishList.add(Cappucino);
         // Create the coffee vending machine using the model
 		
-		/*String[] denominationInputs = view.getDenominationInputs();
+		String[] denominationInputs = view.getDenominationInputs();
 		HashMap<Integer, Integer> bankDetails = new HashMap<>();
 		int[] denominations = {1000, 500, 200, 100, 50, 20, 10, 5, 1};
 		for (int i = 0; i < 9; i++) {
@@ -154,11 +171,10 @@ public class VendingMachineController implements ActionListener{
 				JOptionPane.showMessageDialog(view, "Invalid input for denomination " + denominations[i] + ". Please enter a valid number.");
 				return; // Exit the method if any denomination input is not valid
 			}
-		}*/
-		
-        vendingMachineModel.createVendingMachine(view.getNameInput(), view.getTypeInput(), slots, dishList);
+		}
+        vendingMachineModel.createVendingMachine(view.getNameInput(), view.getTypeInput(), slots, dishList, bankDetails);
         vendingMachineCreated = true;
 
-        JOptionPane.showMessageDialog(view, "Coffee Vending Machine created successfully!");
+        JOptionPane.showMessageDialog(view, "Hi Vending Machine [" + view.getNameInput() + "]!");
     }
 }

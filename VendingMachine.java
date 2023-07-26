@@ -4,8 +4,8 @@ import java.util.*;
  * It manages the money, inventory, and functionality of the vending machine.
  */
 public class VendingMachine {
-    private SpecialVendingMachine SpecialVendingMachine;
-    private RegularVendingMachine RegularVendingMachine;
+    public SpecialVendingMachine SpecialVendingMachine;
+    public RegularVendingMachine RegularVendingMachine;
     private HashMap<Integer,Integer> money = new HashMap<>();
     private HashMap<Integer,Integer> usermoney = new HashMap<>();
     private Bank bank;
@@ -19,67 +19,41 @@ public class VendingMachine {
      * @param slots the inventory slots of the vending machine
      * @throws InterruptedException if the thread is interrupted while sleeping
      */
-    public void createVendingMachine(String name, String type, HashMap<Ingredient,Integer> slots, ArrayList<Dish> dishList){
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("You chose Option 1: Hi Vending Machine [" + name + "]!");
-
+    public void createVendingMachine(String name, String type, HashMap<Ingredient, Integer> slots, ArrayList<Dish> dishList, HashMap<Integer,Integer> money) {
         boolean isTypeValid = false;
-            for (String validType : types) { //for-each loop to check if type is correct
-                if (validType.equalsIgnoreCase(type)) {
-                    isTypeValid = true;
-                    break;
-                }
+        for (String validType : types) {
+            if (validType.equalsIgnoreCase(type)) {
+                isTypeValid = true;
+                break;
             }
-
-        if (isTypeValid){
-            if (type.equalsIgnoreCase("Regular")) {
-                System.out.print("Creating a Regular vending machine ");
-                System.out.print(". \n");
-                     int total = 0, usertotal = 0;
-                     System.out.println("===== YOUR BANK =====");
-                     System.out.println("[Insert the number of Bills/Coins to your BANK]");
-                     // for-each loop to get the quantity for each denomination
-                        for (int denomination : denominations) {
-                            System.out.println(denomination + " Peso Bills/Coins [INSERT]");
-                            int temp = Integer.parseInt(sc.nextLine());
-                            money.put(denomination, temp);
-                            usermoney.put(denomination,0);
-                            total += money.get(denomination) * denomination;
-                        }
-                            System.out.println("\nTotal Money Inserted for Change is [" + total + "]");
-                            bank = new Bank(money,usermoney,total,usertotal);
-                            RegularVendingMachine regular = new RegularVendingMachine(name,"Regular",slots,bank);
-                            this.RegularVendingMachine = regular;
-                            System.out.println("\n\n[VENDING MACHINE: ONLINE]");
-                            RegularVendingMachine.displayAvailableItem();
-
-            } 
-			else if (type.equalsIgnoreCase("Special")) {
-                System.out.println("Creating a Special vending machine ");
-					int total = 0, usertotal = 0;
-					System.out.println("===== YOUR BANK =====");
-					System.out.println("[Insert the number of Bills/Coins to your BANK]");
-					// for-each loop to get the quantity for each denomination
-						for (int denomination : denominations) {
-							System.out.println(denomination + " Peso Bills/Coins [INSERT]");
-							int temp = Integer.parseInt(sc.nextLine());
-							money.put(denomination, temp);
-							usermoney.put(denomination,0);
-							total += money.get(denomination) * denomination;
-							}
-							System.out.println("\nTotal Money Inserted for Change is [" + total + "]");
-							bank = new Bank(money,usermoney,total,usertotal);
-							SpecialVendingMachine special = new SpecialVendingMachine(name,"Special",slots,bank,dishList);
-                            this.SpecialVendingMachine = special;
-                            SpecialVendingMachine.displayStartingInventory();
-                            System.out.println("\n\n[VENDING MACHINE: ONLINE]");
-                            SpecialVendingMachine.displaySpecialAvailableItem();
-			}
-        } else {
-            System.out.println("Invalid vending machine type.");
         }
-	}
+
+        if (isTypeValid) {
+            if (type.equalsIgnoreCase("Regular")) {
+                int total = 0, userTotal = 0;
+                this.money = money;
+                for (int denomination : denominations) {
+                    usermoney.put(denomination, 0);
+                    total += money.get(denomination) * denomination;
+                }
+                bank = new Bank(money, usermoney, total, userTotal);
+                RegularVendingMachine regular = new RegularVendingMachine(name, "Regular", slots, bank);
+                this.RegularVendingMachine = regular;
+            } else if (type.equalsIgnoreCase("Special")) {
+                int total = 0, userTotal = 0;
+                this.money = money;
+                for (int denomination : denominations) {
+                    usermoney.put(denomination, 0);
+                    total += money.get(denomination) * denomination;
+                }
+                bank = new Bank(money, usermoney, total, userTotal);
+                SpecialVendingMachine special = new SpecialVendingMachine(name, "Special", slots, bank, dishList);
+                this.SpecialVendingMachine = special;
+            }
+        } else {
+            // Handle invalid vending machine type here or show appropriate GUI message.
+        }
+    }
     /**
      * Tests the functionality of the vending machine.
      *

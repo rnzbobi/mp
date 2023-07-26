@@ -428,7 +428,7 @@ public class SpecialVendingMachine extends RegularVendingMachine{
                     }
                     sc.nextLine();
 
-                    Ingredient ingredient = new Ingredient(ingredientName, ingredientPrice, ingredientCalories);
+                    Ingredient ingredient = new Ingredient(ingredientName, ingredientPrice, ingredientCalories,"glass.png");
 					slots.put(ingredient, ingredientQuantity);
                     break;
 				

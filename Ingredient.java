@@ -5,6 +5,7 @@ public class Ingredient {
     private final String name;
     private int price;
     private final int calories;
+    private String imageFileName; // Add a property for image file name
 
     /**
      * Constructs an Ingredient object with the specified name, price, and calorie information.
@@ -13,10 +14,11 @@ public class Ingredient {
      * @param price    the price of the ingredient
      * @param calories the calorie information of the ingredient
      */
-    public Ingredient(String name, int price, int calories) {
+    public Ingredient(String name, int price, int calories, String imageFileName) {
         this.name = name;
         this.price = price;
         this.calories = calories;
+        this.imageFileName = imageFileName;
     }
 
     /**
@@ -26,6 +28,14 @@ public class Ingredient {
      */
     public String getName() {
         return name;
+    }
+
+    public String getImageFileName() {
+        return imageFileName;
+    }
+
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
 
     /**
